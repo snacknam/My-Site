@@ -1,12 +1,12 @@
 @import url("https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.5/dist/web/static/pretendard.css");
 * {
-    font-family: Pretendard, 'Apple SD Gothic Neo', sans-serif;
+    font-family: Pretendard, "Apple SD Gothic Neo", sans-serif;
     margin: 0;
     padding: 0;
 }
 body {
     margin: auto;
-    max-width: 960px;
+    max-width: 800px;
 }
 a {
     text-decoration: none;
@@ -18,10 +18,10 @@ a:visited {
     color: #000;
 }
 a:hover {
-    color: #FB9905;
+    color: #fb9905;
 }
 .navi_top {
-    height: 200px;
+    height: 160px;
     display: flex;
     align-items: center;
     justify-content: space-between;
@@ -43,7 +43,7 @@ a:hover {
     display: flex;
     justify-content: space-between;
     align-items: center;
-    height: 200px;
+    height: 160px;
 }
 .copyright {
     font-size: 13px;

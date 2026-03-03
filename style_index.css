@@ -1,10 +1,10 @@
 .header_container {
-    height: 240px;
+    height: 200px;
     display: flex;
     align-items: center;
 }
 h1 {
-    font-size: 24px;
+    font-size: 22px;
     font-weight: 400;
     line-height: 140%;
     animation: slideUp 0.6s ease-in-out forwards;
@@ -12,10 +12,10 @@ h1 {
     clip-path: polygon(0% 0%, 100% 0%, 100% 0%, 0% 0%);
 }
 h1:nth-child(2) {
-    animation-delay: .1s;
+    animation-delay: 0.1s;
 }
 h1:nth-child(3) {
-    animation-delay: .2s;
+    animation-delay: 0.2s;
 }
 @keyframes slideUp {
     0% {
@@ -41,29 +41,28 @@ h1:nth-child(3) {
 }
 @keyframes rotation {
     from {
-      transform: rotate(0deg);
+        transform: rotate(0deg);
     }
     to {
-      transform: rotate(359deg);
+        transform: rotate(359deg);
     }
 }
 .moon {
     width: 18px;
     height: 18px;
     animation: rotation_alternate 1s infinite linear;
-    animation-direction: alternate; 
+    animation-direction: alternate;
 }
 @keyframes rotation_alternate {
     from {
-      transform: rotate(-15deg);
+        transform: rotate(-15deg);
     }
     to {
-      transform: rotate(15deg);
+        transform: rotate(15deg);
     }
 }
 #clock {
     font-size: 14px;
-    font-weight: 500;
     margin-left: 8px;
 }
 .seoul_text {
@@ -73,14 +72,14 @@ h1:nth-child(3) {
 .projects {
     display: grid;
     grid-template-columns: 1fr 1fr;
-    gap: 24px;
+    gap: 16px;
     margin: 80px 0 40px 0;
 }
 .project {
     overflow: hidden;
 }
 .project img {
-    transform: scale(1.0);
+    transform: scale(1);
     transition: transform 0.2s ease-out;
     display: table-row;
 }
@@ -91,22 +90,22 @@ h1:nth-child(3) {
 .text_container {
     display: flex;
     flex-direction: column;
-    gap: 6px;
-    margin: 24px 0px 40px 0px
+    gap: 4px;
+    margin: 16px 0px 40px 0px;
 }
 h2 {
-    font-weight: 500;
+    font-weight: 400;
     font-size: 16px;
 }
 .body1 {
-    font-weight: 400;
+    font-weight: 300;
     font-size: 15px;
     line-height: 160%;
-    color: #555;
+    color: #444;
 }
 .img_frame {
     overflow: hidden;
-    display: table; 
+    display: table;
 }
 @media screen and (max-width: 600px) {
     .projects {
