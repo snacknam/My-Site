@@ -1,5 +1,5 @@
 h1 {
-    font-size: 22px;
+    font-size: 18px;
     font-weight: 400;
     animation: slideUp 0.6s ease-in-out;
     margin-bottom: 8px;
@@ -29,9 +29,9 @@ h1 {
 }
 .body1 {
     font-weight: 300;
-    font-size: 15px;
-    line-height: 160%;
-    color: #444;
+    font-size: 14px;
+    line-height: 180%;
+    color: #333;
 }
 .text_container {
     display: flex;
@@ -70,17 +70,18 @@ h1 {
     margin-bottom: 32px;
 }
 .img_title {
-    font-size: 14px;
+    font-size: 13px;
     font-weight: 300;
     margin-top: 16px;
+    color: #333;
 }
 h2 {
-    font-weight: 500;
-    font-size: 20px;
+    font-weight: 400;
+    font-size: 16px;
 }
 h3 {
-    font-weight: 500;
-    font-size: 18px;
+    font-weight: 400;
+    font-size: 15px;
 }
 ol {
     margin-left: 1.1em;
