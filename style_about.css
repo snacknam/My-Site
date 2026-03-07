@@ -70,15 +70,10 @@ button {
     gap: 40px;
     margin-bottom: 40px;
 }
-.month {
-    display: flex;
-    flex-direction: column;
-    gap: 16px;
-}
 .text_container {
     display: flex;
     flex-direction: column;
-    gap: 2px;
+    gap: 4px;
 }
 h2 {
     font-weight: 400;
@@ -87,7 +82,6 @@ h2 {
 h3 {
     font-weight: 400;
     font-size: 16px;
-    line-height: 160%;
 }
 .body1 {
     font-weight: 300;
