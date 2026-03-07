@@ -2,10 +2,7 @@
 <html lang="kor">
     <head>
         <!-- Google tag (gtag.js) -->
-        <script
-            async
-            src="https://www.googletagmanager.com/gtag/js?id=G-J0JFK5VNMZ"
-        ></script>
+        <script async src="https://www.googletagmanager.com/gtag/js?id=G-J0JFK5VNMZ"></script>
         <script>
             window.dataLayer = window.dataLayer || [];
             function gtag() {
@@ -26,17 +23,13 @@
 
     <body>
         <div class="navi_top">
-            <a href="https://kwansik.com/">
-                <img
-                    src="./image/main/profile.svg"
-                    width="40px"
-                    height="40px"
-                />
+            <a href="./index.html">
+                <img src="./image/main/profile.svg" width="40px" height="40px" />
             </a>
             <div class="menus">
-                <a href="https://kwansik.com/">프로젝트</a>
+                <a href="./index.html">프로젝트</a>
                 <a href="https://velog.io/@snack" target="_blank">개발</a>
-                <a href="./about">소개</a>
+                <a href="./about.html">소개</a>
             </div>
         </div>
         <div class="header_container">
@@ -55,25 +48,15 @@
                             var minutes = time.getMinutes();
                             var seconds = time.getSeconds();
                             var AmPm = time.getHours() > 11 ? "PM" : "AM";
-                            var hours =
-                                time.getHours() > 12
-                                    ? time.getHours() % 12
-                                    : time.getHours();
+                            var hours = time.getHours() > 12 ? time.getHours() % 12 : time.getHours();
 
-                            target.innerText =
-                                `${hours}:${
-                                    minutes < 10 ? `0${minutes}` : minutes
-                                }:${seconds < 10 ? `0${seconds}` : seconds}` +
-                                ` ${AmPm}`;
+                            target.innerText = `${hours}:${minutes < 10 ? `0${minutes}` : minutes}:${seconds < 10 ? `0${seconds}` : seconds}` + ` ${AmPm}`;
                             setTimeIcon();
                         }
                         var dayImage = document.getElementById("dayNight");
                         function setTimeIcon() {
                             var time = new Date();
-                            var dayHours =
-                                time.getHours() > 5 && time.getHours() < 18
-                                    ? "sun"
-                                    : "moon";
+                            var dayHours = time.getHours() > 5 && time.getHours() < 18 ? "sun" : "moon";
                             dayImage.src = `./image/main/${dayHours}.svg`;
                             dayImage.className = dayHours;
                         }
@@ -86,71 +69,57 @@
         </div>
         <div class="projects">
             <div class="project">
-                <a href="./together">
+                <a href="./together.html">
                     <div class="img_frame">
                         <img src="./image/main/together.jpg" width="100%" />
                     </div>
                     <div class="text_container">
                         <h2>together 서비스 디자인</h2>
-                        <div class="body1">
-                            개인프로젝트로 가족가사분담서비스 together를
-                            디자인했습니다.
-                        </div>
+                        <div class="body1">개인프로젝트로 가족가사분담서비스 together를 디자인했습니다.</div>
                     </div>
                 </a>
             </div>
             <div class="project">
-                <a href="./orbro">
+                <a href="./orbro.html">
                     <div class="img_frame">
                         <img src="./image/main/orbro.jpg" width="100%" />
                     </div>
                     <div class="text_container">
                         <h2>Orbro 디자인 시스템 구축</h2>
-                        <div class="body1">
-                            디지털트윈 플랫폼 Orbro의 웹 디자인 시스템을
-                            구축했습니다.
-                        </div>
+                        <div class="body1">디지털트윈 플랫폼 Orbro의 웹 디자인 시스템을 구축했습니다.</div>
                     </div>
                 </a>
             </div>
             <div class="project">
-                <a href="./safetybell">
+                <a href="./safetybell.html">
                     <div class="img_frame">
                         <img src="./image/main/safetybell.jpg" width="100%" />
                     </div>
                     <div class="text_container">
                         <h2>모두의 안심벨 서비스 디자인</h2>
-                        <div class="body1">
-                            경기도 긴급 신고 시스템 모두의 안심벨 서비스를
-                            디자인했습니다.
-                        </div>
+                        <div class="body1">경기도 긴급 신고 시스템 모두의 안심벨 서비스를 디자인했습니다.</div>
                     </div>
                 </a>
             </div>
             <div class="project">
-                <a href="./koin">
+                <a href="./koin.html">
                     <div class="img_frame">
                         <img src="./image/main/koin.jpg" width="100%" />
                     </div>
                     <div class="text_container">
                         <h2>코인 주변상점 UX개선</h2>
-                        <div class="body1">
-                            학생커뮤니티플랫폼 코인의 음식주문 사용성을
-                            개선했습니다.
-                        </div>
+                        <div class="body1">학생커뮤니티플랫폼 코인의 음식주문 사용성을 개선했습니다.</div>
                     </div>
                 </a>
             </div>
             <div class="project">
-                <a href="./ada">
+                <a href="./ada.html">
                     <div class="img_frame">
                         <img src="./image/main/ada.jpg" width="100%" />
                     </div>
                     <div class="text_container">
                         <h2>Apple Developer Academy @ POSTECH</h2>
-                        <div class="body1">
-                            Apple Developer Academy에서 iOS 개발을 공부했습니다.
-                        </div>
+                        <div class="body1">Apple Developer Academy에서 iOS 개발을 공부했습니다.</div>
                     </div>
                 </a>
             </div>
@@ -158,9 +127,9 @@
         <div class="footer">
             <div class="copyright">ⓒ Kwansik Nam 2026</div>
             <div class="menus">
-                <a href="https://kwansik.com/">프로젝트</a>
+                <a href="./index.html">프로젝트</a>
                 <a href="https://velog.io/@snack" target="_blank">개발</a>
-                <a href="./about">소개</a>
+                <a href="./about.html">소개</a>
             </div>
         </div>
     </body>
