@@ -1,0 +1,154 @@
+<!doctype html>
+<html lang="kor">
+    <head>
+        <!-- Google tag (gtag.js) -->
+        <script async src="https://www.googletagmanager.com/gtag/js?id=G-J0JFK5VNMZ"></script>
+        <script>
+            window.dataLayer = window.dataLayer || [];
+            function gtag() {
+                dataLayer.push(arguments);
+            }
+            gtag("js", new Date());
+
+            gtag("config", "G-J0JFK5VNMZ");
+        </script>
+        <meta charset="UTF-8" />
+        <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <title>Kwansik Nam</title>
+        <link rel="icon" type="image/x-icon" href="./image/main/favicon.ico" />
+        <link rel="stylesheet" href="./style_public.css" />
+        <link rel="stylesheet" href="./style_project.css" />
+    </head>
+
+    <body>
+        <div class="navi_top">
+            <a href="./index.html">
+                <img src="./image/main/profile.svg" width="40px" height="40px" />
+            </a>
+            <div class="menus">
+                <a href="./index.html">프로젝트</a>
+                <a href="https://velog.io/@snack" target="_blank">개발</a>
+                <a href="./about">소개</a>
+            </div>
+        </div>
+        <div class="contents">
+            <div class="content">
+                <div class="text_container">
+                    <h1>eXemble &nbsp;—&nbsp; 사내 문서 기반 LLM 워크플로우 환경 설계하기</h1>
+                    <div class="body1">eXemble은 사내 문서를 기반으로 LLM과 워크플로우를 활용할 수 있도록 설계된 온프레미스 AI 서비스다. 나는 이 프로젝트에서 초기 상위 구조를 바탕으로 PM, 개발자와 협업하며 상세 서비스 설계와 전반적인 화면 디자인을 주도했다. 단순한 채팅형 AI 화면이 아니라, 데이터·모델·에이전트·워크플로우·권한·로그까지 연결된 운영형 플랫폼으로 구체화하는 데 집중했다.</div>
+                </div>
+                <img src="./image/exemble/img_1.jpg" width="100%" />
+            </div>
+            <div class="content">
+                <div class="text_container">
+                    <h2>상위 개념을 서비스 구조로 구체화하기</h2>
+                    <div class="body1">
+                        초기 기획은 큰 구조와 방향 중심으로만 정리되어 있었고, 실제 사용 흐름과 예외 상황, 화면 간 관계는 구체화가 필요한 상태였다. 나는 PM, 개발자와 협업하며 추상적인 요구사항을 실제 제품 구조로 전환했다. 어떤 개념이 독립된 관리 단위가 되어야 하는지, 어떤 기능은 사용자 화면과 운영 화면으로 분리되어야 하는지, 어떤 흐름이 하나의 작업 경험으로 묶여야 하는지를 기준 삼아 서비스 전체
+                        구조를 정리했다.
+                    </div>
+                </div>
+                <div class="img_container">
+                    <img src="./image/exemble/img_2.jpg" width="100%" />
+                    <div class="img_title">exemONE의 서비스 화면</div>
+                </div>
+            </div>
+            <div class="content">
+                <div class="text_container">
+                    <h2>데이터·모델·에이전트·워크플로우 관계 설계</h2>
+                    <div class="body1">
+                        eXemble의 핵심은 사내 문서를 기반으로 AI가 동작하는 환경을 만드는 것이었다. 이를 위해 데이터, 모델, 에이전트, 워크플로우처럼 기술적으로 분리된 개념들을 사용자가 이해할 수 있는 서비스 구조로 번역해야 했다. 나는 각 객체의 역할과 관계를 정리하고, 생성·연결·운영 흐름을 화면 단위로 구체화했다. 기술 요소를 단순히 나열하는 대신, 실제로 어떤 순서로 설정하고 어떤 맥락에서
+                        활용하는지가 자연스럽게 이어지도록 구성했다.
+                    </div>
+                </div>
+                <div class="img_container">
+                    <img src="./image/exemble/img_3.jpg" width="100%" />
+                    <div class="img_title">모든 경우의 수가 정리된 기존 Dropdown 컴포넌트의 모습</div>
+                </div>
+            </div>
+            <div class="content">
+                <div class="text_container">
+                    <h2>문서 기반 AI 활용 흐름 설계</h2>
+                    <div class="body1">
+                        이 서비스는 사내 문서를 기반으로 LLM이 답변하거나 작업을 수행하는 구조를 갖는다. 따라서 문서를 단순히 업로드하는 기능이 아니라, AI가 활용할 수 있는 데이터 자산으로 관리되는 흐름이 중요했다. 나는 문서 등록 이후 활용까지 이어지는 경험을 고려해 화면을 설계했다. 이 과정에서 RAG 구조에 필요한 문서 활용 맥락을 이해하고, 복잡한 기술 개념이 사용자의 작업 흐름 안에서 자연스럽게
+                        연결되도록 구성했다.
+                    </div>
+                </div>
+                <div class="img_container">
+                    <img src="./image/exemble/img_4.jpg" width="100%" />
+                    <div class="img_title">모듈화된 컴포넌트 구조</div>
+                </div>
+            </div>
+            <div class="content">
+                <div class="text_container">
+                    <h2>워크플로우를 이해 가능한 인터페이스로 만들기</h2>
+                    <div class="body1">
+                        워크플로우는 eXemble의 핵심 기능 중 하나였다. 하지만 노드, 조건, 실행 흐름처럼 복잡한 개념이 많아 사용자가 쉽게 이해하기 어렵다는 문제가 있었다. 나는 워크플로우를 단순히 기술 기능으로 보여주지 않고, 작업의 순서와 목적이 읽히는 인터페이스로 설계하고자 했다. 각 단계가 어떤 역할을 하는지, 사용자가 어디서 설정하고 어떤 결과를 기대할 수 있는지가 시각적으로 드러나도록 화면을
+                        정리했다.
+                    </div>
+                </div>
+                <div class="img_container">
+                    <img src="./image/exemble/img_5.jpg" width="100%" />
+                    <div class="img_title">적은 Variants 수와 컴포넌트 사용 시 모습</div>
+                </div>
+            </div>
+            <div class="content">
+                <div class="text_container">
+                    <h2>채팅을 업무 실행 인터페이스로 확장하기</h2>
+                    <div class="body1">LLM 채팅은 단순 대화형 UI가 아니라, 문서와 에이전트, 워크플로우가 연결된 실행 인터페이스로 작동해야 했다. 나는 서비스 선택, 입력 데이터 구성, 파일 업로드, 결과 확인, 피드백까지 이어지는 흐름을 하나의 사용 경험으로 설계했다. 이를 통해 채팅은 단순한 대화창이 아니라, 실제 업무를 수행하는 진입점이자 실행 창구가 되도록 구성했다.</div>
+                </div>
+                <div class="img_container">
+                    <img src="./image/exemble/img_6.jpg" width="100%" />
+                    <div class="img_title">이미지를 확인하며 아이콘을 변경할 수 있는 개선된 컴포넌트</div>
+                </div>
+            </div>
+            <div class="content">
+                <div class="text_container">
+                    <h2>권한·인증키·외부 도구를 포함한 운영 환경 설계</h2>
+                    <div class="body1">
+                        온프레미스 환경에서 AI 서비스를 운영하기 위해서는 모델이나 데이터뿐 아니라 인증키, 외부 API, 연결 도구, 권한 구조까지 함께 관리되어야 했다. 나는 이러한 운영 요소들을 별도 기술 설정이 아니라 서비스 내 관리 가능한 객체로 다루며, 관리자가 이해하고 통제할 수 있는 방식으로 인터페이스를 설계했다. 이를 통해 eXemble이 단순한 실험용 기능이 아니라 실제 조직 환경에서 운영 가능한
+                        서비스로 보이도록 만들었다.
+                    </div>
+                </div>
+                <div class="img_container">
+                    <img src="./image/exemble/img_7.jpg" width="100%" />
+                    <div class="img_title">줄어든 Variants 수에 따라 개선된 메모리 관리</div>
+                </div>
+            </div>
+            <div class="content">
+                <div class="text_container">
+                    <h2>대시보드와 로그를 통한 운영 가시성 설계</h2>
+                    <div class="body1">
+                        AI 서비스는 생성보다 운영이 더 중요하다고 판단했다. 어떤 서비스가 어떻게 사용되고 있는지, 어떤 이력이 남고 어떤 상태인지 확인할 수 있어야 실제 환경에서 신뢰할 수 있기 때문이다. 나는 대시보드와 로그 화면을 통해 서비스 상태, 실행 이력, 운영 흐름을 가시화하는 방향으로 설계했다. 복잡한 정보를 단순히 나열하지 않고, 운영자가 빠르게 파악하고 대응할 수 있는 구조를 만드는 데
+                        집중했다.
+                    </div>
+                </div>
+                <div class="img_container">
+                    <img src="./image/exemble/img_8.jpg" width="100%" />
+                    <div class="img_title">테마 별로 두 번씩 작업해야하는 기존 작업 방식</div>
+                </div>
+            </div>
+            <div class="content">
+                <div class="text_container">
+                    <h2>마무리</h2>
+                    <div class="body1">
+                        eXemble은 단순히 AI 기능을 붙인 서비스가 아니라, 사내 문서를 기반으로 LLM과 워크플로우를 실제 조직 안에서 활용할 수 있도록 만든 온프레미스 플랫폼이었다. 이 프로젝트를 통해 나는 추상적인 기술 개념을 제품 구조와 사용자 경험으로 번역하는 방법, 그리고 운영 가능한 B2B AI 플랫폼을 설계하는 방법을 깊이 있게 경험할 수 있었다. 특히 기획 공백이 큰 상태에서 PM, 개발자와 함께 구조를
+                        구체화하며 서비스 전체를 설계한 경험은 이후 복잡한 플랫폼을 다루는 데 중요한 기준이 되었다.
+                    </div>
+                </div>
+                <div class="img_container">
+                    <img src="./image/exemble/img_9.jpg" width="100%" />
+                    <div class="img_title">Variables 기능을 활용한 토큰 관리</div>
+                </div>
+            </div>
+        </div>
+        <div class="footer">
+            <div class="copyright">ⓒ Kwansik Nam 2026</div>
+            <div class="menus">
+                <a href="./index.html">프로젝트</a>
+                <a href="https://velog.io/@snack" target="_blank">개발</a>
+                <a href="./about">소개</a>
+            </div>
+        </div>
+    </body>
+</html>
