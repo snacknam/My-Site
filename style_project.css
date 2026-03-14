@@ -2,7 +2,7 @@ h1 {
     font-size: 20px;
     font-weight: 400;
     animation: slideUp 0.6s ease-in-out;
-    margin-bottom: 8px;
+    margin-bottom: 12px;
 }
 @keyframes slideUp {
     0% {
@@ -16,6 +16,12 @@ h1 {
         clip-path: polygon(0% 00%, 100% 0%, 100% 100%, 0% 100%);
     }
 }
+.overview {
+    font-size: 14px;
+    font-weight: 300;
+    color: #777;
+    margin-bottom: 16px;
+}
 .contents {
     display: flex;
     flex-direction: column;
@@ -25,7 +31,7 @@ h1 {
 .content {
     display: flex;
     flex-direction: column;
-    gap: 40px;
+    gap: 32px;
 }
 .body1 {
     font-weight: 300;
@@ -71,7 +77,7 @@ h1 {
 }
 .img_title {
     font-size: 14px;
-    font-weight: 400;
+    font-weight: 4300;
     margin-top: 16px;
     color: #444;
 }
@@ -96,6 +102,7 @@ li::before {
 }
 .button_container {
     display: flex;
+    margin-top: 8px;
 }
 button {
     background-color: #000;
