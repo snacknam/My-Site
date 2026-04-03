@@ -127,12 +127,13 @@ button {
 }
 .motion_layout {
     display: grid;
-    grid-template-columns: 3fr 2fr;
+    grid-template-columns: 1fr 2fr;
     gap: 40px;
 }
 .motion_stack {
-    display: grid;
-    grid-template-rows: 1fr 1fr 1fr;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
 }
 .mobile {
     width: 100%;
