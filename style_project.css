@@ -120,15 +120,26 @@ button {
     justify-content: center;
     align-items: center;
 }
-.video_grid {
+.mobile_layout {
     display: grid;
     grid-template-columns: 1fr 1fr 1fr;
     gap: 16px;
-    justify-items: center;
+}
+.motion_layout {
+    display: grid;
+    grid-template-columns: 3fr 2fr;
+    gap: 40px;
+}
+.motion_stack {
+    display: grid;
+    grid-template-rows: 1fr 1fr 1fr;
 }
 .mobile {
-    border-radius: 40px;
-    border: 8px solid black;
+    width: 100%;
+    padding: clamp(4px, 1vw, 8px);
+    border-radius: clamp(20px, 3vw, 40px);
+    background: black;
+    box-sizing: border-box;
 }
 @media screen and (max-width: 600px) {
     h1 {
