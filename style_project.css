@@ -135,6 +135,20 @@ button {
     flex-direction: column;
     justify-content: space-between;
 }
+.content_frame {
+    width: 100%;
+    padding: clamp(8px, 1vw, 16px);
+    background: #f4f4f4;
+    box-sizing: border-box;
+}
+.video_frame {
+    display: block;
+    width: 100%;
+    padding: clamp(0.21px, 1vw, 0.42px);
+    border-radius: clamp(1.66px, 1vw, 3.33px);
+    background: #e5e5e5;
+    box-sizing: border-box;
+}
 .mobile {
     width: 100%;
     padding: clamp(4px, 1vw, 8px);
