@@ -125,16 +125,6 @@ button {
     grid-template-columns: 1fr 1fr 1fr;
     gap: 16px;
 }
-.motion_layout {
-    display: grid;
-    grid-template-columns: 1fr 2fr;
-    gap: 40px;
-}
-.motion_stack {
-    display: flex;
-    flex-direction: column;
-    justify-content: space-between;
-}
 .content_frame {
     width: 100%;
     padding: clamp(8px, 1vw, 16px);
