@@ -1,8 +1,19 @@
 @font-face {
   font-family: "Pretendard";
-  src: url("/fonts/PretendardVariable.woff2") format("woff2-variations");
-  font-weight: 45 920;
-  font-style: normal;
+  src: local("Pretendard Light"), url("/fonts/Pretendard-Light.woff2") format("woff2");
+  font-weight: 300;
+  font-display: swap;
+}
+@font-face {
+  font-family: "Pretendard";
+  src: local("Pretendard Regular"), url("/fonts/Pretendard-Regular.woff2") format("woff2");
+  font-weight: 400;
+  font-display: swap;
+}
+@font-face {
+  font-family: "Pretendard";
+  src: local("Pretendard SemiBold"), url("/fonts/Pretendard-SemiBold.woff2") format("woff2");
+  font-weight: 600;
   font-display: swap;
 }
 
@@ -100,6 +111,46 @@ img { display: block; max-width: 100%; }
 .photo-detail { display: flex; flex-direction: column; gap: var(--space-4); margin: var(--space-5) 0 var(--space-6); }
 .photo-detail > div { display: flex; flex-wrap: wrap; gap: var(--space-2) var(--space-3); color: var(--color-text-secondary); font-size: 14px; }
 
+/* The Korean pages retain the exact content hierarchy of the original portfolio. */
+.legacy-project .contents { display: flex; flex-direction: column; gap: 160px; margin-bottom: 80px; }
+.legacy-project .content { display: flex; flex-direction: column; gap: 32px; }
+.legacy-project h1 { margin-bottom: 12px; font-size: 20px; font-weight: 400; animation: slideUp 0.6s ease-in-out; }
+.legacy-project .overview { margin-bottom: 16px; color: #777; font-size: 14px; font-weight: 300; }
+.legacy-project .body1 { color: #222; font-size: 15px; font-weight: 300; line-height: 160%; }
+.legacy-project .text_container { display: flex; flex-direction: column; gap: 16px; }
+.legacy-project .text_container2 { display: flex; flex-direction: column; gap: 32px; }
+.legacy-project .text_container3 { display: flex; flex-direction: column; gap: 8px; }
+.legacy-project .grid_container { display: grid; grid-template-columns: 1fr 1fr; gap: 40px; }
+.legacy-project .text_container4 { display: flex; flex-direction: column; gap: 24px; }
+.legacy-project .img_container { display: flex; flex-direction: column; align-items: center; }
+.legacy-project .title_container { display: flex; align-items: center; gap: 16px; margin-bottom: 32px; }
+.legacy-project .img_title { margin-top: 16px; color: #222; font-size: 14px; font-weight: 400; }
+.legacy-project h2 { font-size: 18px; font-weight: 400; }
+.legacy-project h3 { font-size: 16px; font-weight: 400; }
+.legacy-project ol { margin-left: 1.1em; }
+.legacy-project ul { list-style: none; }
+.legacy-project li::before { content: "•"; margin-right: 8px; vertical-align: middle; }
+.legacy-project .button_container { display: flex; margin-top: 8px; }
+.legacy-project button { display: flex; align-items: center; justify-content: center; height: 40px; gap: 6px; padding: 0 16px 0 12px; border: 0; border-radius: 22px; background: #000; color: #fff; font-family: inherit; font-size: 14px; font-weight: 400; cursor: pointer; }
+.legacy-project .mobile_layout { display: grid; grid-template-columns: repeat(3, 1fr); gap: 16px; }
+.legacy-project .content_frame { width: 100%; padding: clamp(8px, 1vw, 16px); background: #f4f4f4; }
+.legacy-project .video_frame { display: block; width: 100%; padding: clamp(0.21px, 1vw, 0.42px); border-radius: clamp(1.66px, 1vw, 3.33px); background: #e5e5e5; }
+.legacy-project .mobile { width: 100%; padding: clamp(4px, 1vw, 8px); border-radius: clamp(20px, 3vw, 40px); background: #000; }
+
+.legacy-about .profile { display: flex; flex-direction: column; align-items: center; gap: 80px; }
+.legacy-about h1 { padding-bottom: 4px; font-size: 20px; font-weight: 400; animation: slideUp 0.6s ease-in-out; }
+.legacy-about .overview { display: flex; flex-direction: column; align-items: center; gap: 24px; }
+.legacy-about .intro { display: flex; flex-direction: column; align-items: center; margin-bottom: 40px; font-size: 15px; font-weight: 300; line-height: 180%; }
+.legacy-about .links { display: flex; height: 40px; gap: 16px; }
+.legacy-about button { height: 40px; padding: 0 20px; border: 0; border-radius: 22px; background: #000; color: #fff; font-family: inherit; font-size: 14px; font-weight: 400; cursor: pointer; }
+.legacy-about .grid { display: grid; grid-template-columns: 1fr 2.05fr; gap: 40px; margin: 80px 0 40px; }
+.legacy-about .year_frame { display: flex; justify-content: right; }
+.legacy-about .year { display: flex; flex-direction: column; gap: 40px; margin-bottom: 40px; }
+.legacy-about .text_container { display: flex; flex-direction: column; gap: 4px; }
+.legacy-about h2 { font-size: 15px; font-weight: 400; }
+.legacy-about h3 { font-size: 16px; font-weight: 400; }
+.legacy-about .body1 { color: #444; font-size: 15px; font-weight: 300; line-height: 160%; }
+
 @keyframes slideUp {
   from { clip-path: polygon(0 0, 100% 0, 100% 0, 0 0); transform: translateY(100%); }
   to { clip-path: polygon(0 0, 100% 0, 100% 100%, 0 100%); transform: translateY(0); }
@@ -119,6 +170,14 @@ img { display: block; max-width: 100%; }
   .about-hero { margin-top: var(--space-5); }
   .career-year { grid-template-columns: 1fr 8fr; gap: var(--space-5); }
   .photo-grid { columns: 2; }
+  .legacy-project h1 { margin-top: 40px; }
+  .legacy-project .contents { gap: 160px; }
+  .legacy-project .video_grid { display: flex; overflow-x: scroll; gap: 20px; scrollbar-width: none; }
+  .legacy-project .video_grid::-webkit-scrollbar { display: none; }
+  .legacy-project .videos { height: 400px; border: 6px solid #000; border-radius: 32px; }
+  .legacy-about .profile { margin-top: 40px; }
+  .legacy-about .grid { grid-template-columns: 1fr 8fr; }
+  .legacy-about h3 { line-height: 150%; }
 }
 
 @media (prefers-reduced-motion: reduce) {

@@ -13,6 +13,7 @@ const sourceFiles = [
 
 const errors = [];
 const assetPattern = /["'](\/image\/[^"']+|\/CV\.pdf)["']/g;
+const legacyFiles = ["about.html", "ada.html", "exemble.html", "exemui.html", "koin.html", "orbro.html", "safetybell.html", "together.html"];
 
 for (const sourceFile of sourceFiles) {
   const absoluteSource = resolve(root, sourceFile);
@@ -32,9 +33,23 @@ for (const sourceFile of sourceFiles) {
   }
 }
 
+for (const legacyFile of legacyFiles) {
+  const source = readFileSync(resolve(root, legacyFile), "utf8");
+  const normalizedSource = source.replaceAll('src="./', 'src="/').replaceAll('href="./', 'href="/');
+  for (const match of normalizedSource.matchAll(assetPattern)) {
+    const asset = match[1].slice(1);
+    if (!existsSync(resolve(root, asset))) errors.push(`Missing asset in ${legacyFile}: /${asset}`);
+  }
+}
+
+for (const font of ["Light", "Regular", "SemiBold"]) {
+  const fontPath = `Pretendard/web/static/woff2/Pretendard-${font}.woff2`;
+  if (!existsSync(resolve(root, fontPath))) errors.push(`Missing font: ${fontPath}`);
+}
+
 if (errors.length) {
   console.error(errors.join("\n"));
   process.exit(1);
 }
 
-console.log(`Validated ${sourceFiles.length} bilingual content files and their referenced assets.`);
+console.log(`Validated bilingual content, ${legacyFiles.length} original Korean pages, fonts, and referenced assets.`);

@@ -41,11 +41,14 @@ npm run preview
 
 - 프로젝트 목록: `src/content/projects.ts`
 - 프로젝트 상세: `src/content/projectDetails/`
+- 기존 한국어 원문 연결: `src/content/legacyKorean.ts`와 루트의 기존 `.html` 파일
 - 소개/경력: `src/content/about.ts`
 - 사진 아카이브: `src/content/photography.ts`
 - 공통 번역: `src/content/ui.ts`
 
 사진을 추가할 때는 이미지 파일을 `image/` 아래에 넣고 `src/content/photography.ts`의 `photographs` 배열에 한국어·영어 메타데이터를 추가합니다. 피드와 상세 페이지는 자동으로 만들어집니다.
+
+한국어 프로젝트와 About은 기존 사이트의 문장, 목록, 버튼, 개행과 미디어 구성을 정확히 보존하기 위해 루트의 기존 HTML을 원문으로 사용합니다. 한국어 원문을 바꿀 때는 해당 `.html`을 수정하고 `npm run check`로 이미지·폰트 경로를 확인합니다.
 
 ## 다른 컴퓨터에서 이어서 작업하기
 

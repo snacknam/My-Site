@@ -6,6 +6,7 @@ import { ProjectPage } from "./pages/ProjectPage";
 import { AboutPage } from "./pages/AboutPage";
 import { PhotographyPage } from "./pages/PhotographyPage";
 import { PhotoPage } from "./pages/PhotoPage";
+import { LegacyKoreanAboutPage, LegacyKoreanProjectPage } from "./pages/LegacyKoreanPage";
 
 function LocalizedHomeRoute() {
   const { locale } = useParams();
@@ -29,12 +30,13 @@ function LocalizedProjectRoute() {
     return <NotFoundPage locale={isLocale(locale) ? locale : defaultLocale} />;
   }
 
-  return <ProjectPage locale={locale} slug={slug} />;
+  return locale === "ko" ? <LegacyKoreanProjectPage slug={slug} /> : <ProjectPage locale={locale} slug={slug} />;
 }
 
 function LocalizedAboutRoute() {
   const { locale } = useParams();
-  return isLocale(locale) ? <AboutPage locale={locale} /> : <NotFoundPage />;
+  if (!isLocale(locale)) return <NotFoundPage />;
+  return locale === "ko" ? <LegacyKoreanAboutPage /> : <AboutPage locale={locale} />;
 }
 
 function LocalizedPhotographyRoute() {

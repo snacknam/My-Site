@@ -8,4 +8,6 @@ cp about.html ada.html exemble.html exemui.html koin.html orbro.html safetybell.
 cp style_about.css style_index.css style_project.css style_public.css dist/
 cp -R image dist/
 mkdir -p dist/fonts
-cp Pretendard/web/variable/woff2/PretendardVariable.woff2 dist/fonts/
+cp Pretendard/web/static/woff2/Pretendard-Light.woff2 dist/fonts/
+cp Pretendard/web/static/woff2/Pretendard-Regular.woff2 dist/fonts/
+cp Pretendard/web/static/woff2/Pretendard-SemiBold.woff2 dist/fonts/
