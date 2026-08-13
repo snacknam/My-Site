@@ -15,6 +15,13 @@ npm run dev
 
 `main` 브랜치에 반영된 코드만 GitHub Actions에서 빌드되어 GitHub Pages에 배포됩니다.
 
+## 브랜치 운영
+
+- `dev`: 평소 개발 작업을 올리는 브랜치. 푸시할 때 빌드만 검사하며 공개 사이트에는 배포하지 않습니다.
+- `main`: 운영 브랜치. `dev`의 검증된 작업을 병합하면 GitHub Pages에 자동 배포됩니다.
+
+권장 흐름은 `dev에서 작업 → GitHub 빌드 검사 → main으로 병합 → 운영 배포`입니다.
+
 ```bash
 npm run build
 npm run preview

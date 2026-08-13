@@ -46,6 +46,7 @@ npm run preview
 
 - `npm run dev`: 로컬 개발 서버. 공개 사이트에 영향을 주지 않는다.
 - `npm run preview`: 운영 빌드 결과를 로컬에서 확인한다.
+- `dev` 브랜치: 개발 변경사항을 공유하고 빌드만 검증한다. 공개 사이트에는 배포하지 않는다.
 - GitHub Pages: `main` 브랜치에 반영된 빌드만 운영 배포한다.
 - GitHub 저장소의 Pages 설정에서 배포 소스를 **GitHub Actions**로 선택해야 한다.
 
@@ -82,7 +83,7 @@ npm run preview
 ```bash
 git clone https://github.com/snacknam/My-Site.git
 cd My-Site
-git switch agent/react-migration
+git switch dev
 npm ci
 npm run dev
 ```
