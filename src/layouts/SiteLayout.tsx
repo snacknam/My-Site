@@ -28,7 +28,7 @@ export function SiteLayout({ children, locale, pageTitle }: SiteLayoutProps) {
         <nav className="menu" aria-label={text.footerNavigationLabel}>
           <Link to={`/${locale}`}>{text.navigation.projects}</Link>
           <Link to={`/${locale}/photography`}>{text.navigation.photography}</Link>
-          <a href="https://velog.io/@snack" target="_blank" rel="noreferrer">{text.navigation.development}</a>
+          <a className="development-link" href="https://velog.io/@snack" target="_blank" rel="noreferrer">{text.navigation.development}</a>
           <Link to={`/${locale}/about`}>{text.navigation.about}</Link>
         </nav>
       </footer>

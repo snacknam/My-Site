@@ -21,7 +21,7 @@ export function SiteNavigation({ locale }: SiteNavigationProps) {
       <nav className="menu" aria-label={text.primaryNavigationLabel}>
         <Link to={`/${locale}`}>{text.navigation.projects}</Link>
         <Link to={`/${locale}/photography`}>{text.navigation.photography}</Link>
-        <a href="https://velog.io/@snack" target="_blank" rel="noreferrer">{text.navigation.development}</a>
+        <a className="development-link" href="https://velog.io/@snack" target="_blank" rel="noreferrer">{text.navigation.development}</a>
         <Link to={`/${locale}/about`}>{text.navigation.about}</Link>
         <Link to={languagePath} aria-label={text.languageLabel} className="language-switch" lang={otherLocale}>
           {text.navigation.language}

@@ -33,7 +33,11 @@ export function ProjectLayout({ locale, project }: ProjectLayoutProps) {
               </div>
             </div>
             {section.image && <img src={section.image.image} alt={section.image.alt} loading="lazy" />}
-            {section.media?.map((item) => <ProjectMedia item={item} key={item.src} />)}
+            {section.media && section.media.length > 1 ? (
+              <div className="project-media-grid">
+                {section.media.map((item) => <ProjectMedia item={item} key={item.src} />)}
+              </div>
+            ) : section.media?.map((item) => <ProjectMedia item={item} key={item.src} />)}
           </section>
         ))}
       </article>
