@@ -51,7 +51,7 @@ npm run preview
 
 ## 배포 방식
 
-- `.github/workflows/check.yml`: `main` 대상 PR과 수동 실행에서 `npm run check`
+- `.github/workflows/check.yml`: `main` 대상 PR에서 `npm run check` (`dev` 푸시 트리거는 브랜치 삭제 후 비활성 상태)
 - `.github/workflows/deploy.yml`: `main` 푸시에서 검사 후 `dist/`를 GitHub Pages에 배포
 - `CNAME`: `kwansik.com` 유지
 - GitHub Pages 설정의 Source는 **GitHub Actions**여야 한다.
