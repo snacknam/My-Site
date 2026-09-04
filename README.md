@@ -1,6 +1,6 @@
 # Kwansik Nam Portfolio
 
-React, TypeScript, Vite로 만든 한국어·영어 포트폴리오입니다. GitHub Pages를 운영 서버로 사용하며 `dev`와 `main` 브랜치로 개발과 배포를 분리합니다.
+React, TypeScript, Vite로 만든 한국어·영어 포트폴리오입니다. GitHub Pages를 운영 서버로 사용하며 `main` 브랜치에 병합하면 자동으로 배포됩니다.
 
 ## 로컬에서 확인하기
 
@@ -20,12 +20,13 @@ npm run preview
 
 `npm run check`는 코드 규칙, 한국어·영어 콘텐츠와 이미지 경로, 타입, 빌드, 20개 다국어 페이지의 HTML 생성을 한 번에 검사합니다.
 
-## 브랜치와 배포
+## 개발과 배포
 
-- `dev`: 평소 작업 브랜치. GitHub Actions가 검사만 하고 공개 사이트는 바꾸지 않습니다.
-- `main`: 운영 브랜치. 푸시되면 GitHub Pages에 자동 배포됩니다.
+- 새 작업은 최신 `main`에서 목적에 맞는 작업 브랜치를 만들어 진행합니다.
+- `main` 대상 PR에서는 GitHub Actions가 `npm run check`를 실행합니다.
+- `main`에 병합되면 검사 후 GitHub Pages에 자동 배포됩니다.
 
-권장 흐름은 `dev에서 작업 → 검사 통과 → dev를 main으로 병합 → 운영 배포`입니다. GitHub 저장소의 Pages 배포 소스는 **GitHub Actions**로 설정해야 합니다.
+권장 흐름은 `작업 브랜치 생성 → npm run check → main 대상 PR → 병합 및 운영 배포`입니다. GitHub 저장소의 Pages 배포 소스는 **GitHub Actions**로 설정해야 합니다.
 
 ## 주요 주소
 
@@ -55,7 +56,6 @@ npm run preview
 ```bash
 git clone https://github.com/snacknam/My-Site.git
 cd My-Site
-git switch dev
 npm ci
 npm run dev
 ```

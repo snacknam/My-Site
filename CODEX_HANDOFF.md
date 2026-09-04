@@ -2,7 +2,9 @@
 
 ## 프로젝트 상태
 
-기존 HTML/CSS 포트폴리오의 React + TypeScript + Vite 전환 10단계를 완료했다. 작업 브랜치는 `dev`, 운영 배포 브랜치는 `main`이다.
+기존 HTML/CSS 포트폴리오의 React + TypeScript + Vite 전환 10단계를 완료하고 `main`에 배포했다. 전환 작업에 사용한 `dev` 브랜치는 `main`과 동기화한 뒤 삭제했으며, 현재 기본·운영 브랜치는 `main` 하나다.
+
+최종 배포 기준 커밋은 `3e28b92` (`fix: prevent Seoul clock hydration mismatch`)이다. 공개 사이트 `https://kwansik.com/ko/`에서 이미지 오류와 브라우저 콘솔 오류가 없음을 확인했다.
 
 ## 완료한 10단계
 
@@ -49,12 +51,12 @@ npm run preview
 
 ## 배포 방식
 
-- `.github/workflows/check.yml`: `dev` 푸시와 `main` 대상 PR에서 `npm run check`
+- `.github/workflows/check.yml`: `main` 대상 PR과 수동 실행에서 `npm run check`
 - `.github/workflows/deploy.yml`: `main` 푸시에서 검사 후 `dist/`를 GitHub Pages에 배포
 - `CNAME`: `kwansik.com` 유지
 - GitHub Pages 설정의 Source는 **GitHub Actions**여야 한다.
 
-개발 화면을 공유하려면 `dev`를 받은 뒤 로컬 서버를 실행한다. GitHub Pages는 브랜치별 미리보기 환경을 기본 제공하지 않으므로 `dev`는 검사 환경, `main`은 운영 환경으로 사용한다.
+새 작업은 `main`에서 목적에 맞는 작업 브랜치를 만들어 진행하고, `npm run check` 통과 후 `main` 대상 PR로 병합한다. `main`에 직접 푸시하면 운영 배포가 시작된다. GitHub Pages는 브랜치별 미리보기 환경을 기본 제공하지 않는다.
 
 ## 주요 파일
 
@@ -95,11 +97,10 @@ npm run preview
 ```bash
 git clone https://github.com/snacknam/My-Site.git
 cd My-Site
-git switch dev
 npm ci
 npm run dev
 ```
 
 새 Codex 작업에서 다음과 같이 요청한다.
 
-> `CODEX_HANDOFF.md`를 읽고 dev 브랜치 상태와 GitHub Actions를 확인한 다음 이어서 진행해줘.
+> `CODEX_HANDOFF.md`를 읽고 main 브랜치와 GitHub Actions 상태를 확인한 다음 새 작업 브랜치를 만들어 이어서 진행해줘.

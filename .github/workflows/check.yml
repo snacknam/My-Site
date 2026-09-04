@@ -1,8 +1,7 @@
-name: Check development build
+name: Check build
 
 on:
-  push:
-    branches: [dev]
+  workflow_dispatch:
   pull_request:
     branches: [main]
 
