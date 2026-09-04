@@ -14,20 +14,23 @@ function formatTime(date: Date) {
 }
 
 export function SeoulClock() {
-  const [time, setTime] = useState(getSeoulTime);
+  const [time, setTime] = useState<Date | null>(null);
 
   useEffect(() => {
-    const timer = window.setInterval(() => setTime(getSeoulTime()), 1000);
+    const updateTime = () => setTime(getSeoulTime());
+    updateTime();
+    const timer = window.setInterval(updateTime, 1000);
     return () => window.clearInterval(timer);
   }, []);
 
-  const isDaytime = time.getHours() >= 6 && time.getHours() < 18;
+  const isDaytime = time ? time.getHours() >= 6 && time.getHours() < 18 : true;
   const icon = isDaytime ? "sun" : "moon";
+  const displayTime = time ? formatTime(time) : "--:--:-- --";
 
   return (
-    <div className="seoul-clock" aria-label={`Seoul time ${formatTime(time)}`}>
+    <div className="seoul-clock" aria-label={`Seoul time ${displayTime}`}>
       <img src={`/image/main/${icon}.svg`} className={icon} width="18" height="18" alt="" />
-      <time>{formatTime(time)}</time>
+      <time>{displayTime}</time>
       <span>Seoul</span>
     </div>
   );
