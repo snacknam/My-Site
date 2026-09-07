@@ -9,9 +9,20 @@ const sourceFiles = [
   "src/content/projectDetails/simpleProjects.ts",
   "src/content/about.ts",
   "src/content/photography.ts",
+  "src/content/archives.ts",
 ];
 
 const errors = [];
+const development = JSON.parse(readFileSync(resolve(root, "src/content/development.json"), "utf8"));
+const developmentSlugs = new Set();
+for (const post of development) {
+  if (!post.slug || developmentSlugs.has(post.slug)) errors.push(`Duplicate or missing development slug: ${post.slug}`);
+  developmentSlugs.add(post.slug);
+  if (!post.title || !post.markdown || !post.topic || !/^\d{4}-\d{2}-\d{2}$/.test(post.date) || !post.source.startsWith("https://velog.io/@snack/")) errors.push(`Invalid development content: ${post.slug}`);
+  for (const match of post.markdown.matchAll(/\/image\/development\/[^\s\[\]()"'<>]+/g)) {
+    if (!existsSync(resolve(root, match[0].slice(1)))) errors.push(`Missing development image: ${match[0]}`);
+  }
+}
 const assetPattern = /["'](\/image\/[^"']+|\/CV\.pdf)["']/g;
 const legacyFiles = ["about.html", "ada.html", "exemble.html", "exemui.html", "koin.html", "orbro.html", "safetybell.html", "together.html"];
 

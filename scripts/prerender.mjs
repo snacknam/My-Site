@@ -1,9 +1,10 @@
 import { mkdir, readFile, rm, writeFile } from "node:fs/promises";
 import { resolve } from "node:path";
-import { render } from "../dist-ssr/entry-server.js";
+import { render, archives, archiveLabels, photographs, photoAlbums, photographyLabels } from "../dist-ssr/entry-server.js";
 
 const root = resolve(import.meta.dirname, "..");
 const origin = "https://kwansik.com";
+const escapeHtml = (value) => value.replaceAll("&", "&amp;").replaceAll('"', "&quot;").replaceAll("<", "&lt;").replaceAll(">", "&gt;");
 const projectMeta = {
   exemble: ["Exemble", "An on-premise LLM workflow platform for internal knowledge"],
   exemui: ["Exem UI", "A unified design and development library for internal products"],
@@ -20,6 +21,11 @@ const routes = [
     { path: `/${locale}/about`, title: locale === "ko" ? "소개 — 남관식" : "About — Kwansik Nam", description: locale === "ko" ? "프로덕트 디자이너 남관식의 경험과 경력" : "Experience and career of product designer Kwansik Nam." },
     { path: `/${locale}/photography`, title: "Photography — Kwansik Nam", description: locale === "ko" ? "일상에서 발견한 장면을 기록하는 사진 아카이브" : "A visual archive of moments found in everyday life." },
     ...Object.entries(projectMeta).map(([slug, [name, description]]) => ({ path: `/${locale}/projects/${slug}`, title: `${name} — Kwansik Nam`, description })),
+    { path: `/${locale}/archives`, title: `${archiveLabels[locale].title} — Kwansik Nam`, description: archiveLabels[locale].description },
+    ...archives.map((entry) => ({ path: `/${locale}/archives/${entry.slug}`, title: `${entry.content[locale].title} — Kwansik Nam`, description: entry.content[locale].summary })),
+    { path: `/${locale}/photography/recents`, title: `${photographyLabels[locale].recent} — Kwansik Nam`, description: locale === "ko" ? "최근에 기록한 사진들" : "Recent photographs by Kwansik Nam" },
+    ...photoAlbums.map((album) => ({ path: `/${locale}/photography/albums/${album.slug}`, title: `${album.title[locale]} — Kwansik Nam`, description: album.title[locale] })),
+    ...photographs.map((photo) => ({ path: `/${locale}/photography/${photo.slug}`, title: `${photo.location[locale]} — Kwansik Nam`, description: photo.caption?.[locale] ?? photo.alt[locale] })),
   ]),
 ];
 
@@ -39,27 +45,29 @@ for (const route of routes) {
   const alternatePath = route.path.replace(`/${locale}`, `/${alternateLocale}`);
   const canonical = `${origin}${route.path}`;
   const appHtml = render(route.path);
+  const title = escapeHtml(route.title);
+  const description = escapeHtml(route.description);
   const meta = `
-    <meta name="description" content="${route.description}" />
+    <meta name="description" content="${description}" />
     <link rel="canonical" href="${canonical}" />
     <link rel="alternate" hreflang="ko" href="${origin}${locale === "ko" ? route.path : alternatePath}" />
     <link rel="alternate" hreflang="en" href="${origin}${locale === "en" ? route.path : alternatePath}" />
     <link rel="alternate" hreflang="x-default" href="${origin}${locale === "ko" ? route.path : alternatePath}" />
     <meta property="og:type" content="website" />
-    <meta property="og:title" content="${route.title}" />
-    <meta property="og:description" content="${route.description}" />
+    <meta property="og:title" content="${title}" />
+    <meta property="og:description" content="${description}" />
     <meta property="og:url" content="${canonical}" />
     <meta property="og:image" content="${origin}/image/main/exemble.jpg" />
     <meta property="og:locale" content="${locale === "ko" ? "ko_KR" : "en_US"}" />
     <meta name="twitter:card" content="summary_large_image" />
-    <meta name="twitter:title" content="${route.title}" />
-    <meta name="twitter:description" content="${route.description}" />
+    <meta name="twitter:title" content="${title}" />
+    <meta name="twitter:description" content="${description}" />
     <meta name="twitter:image" content="${origin}/image/main/exemble.jpg" />
     <script type="application/ld+json">${structuredData}</script>`;
   const html = template
     .replace('<html lang="ko">', `<html lang="${locale}">`)
     .replace(/<meta name="description"[^>]*>\s*/g, "")
-    .replace("<title>Kwansik Nam</title>", `${meta}\n    <title>${route.title}</title>`)
+    .replace("<title>Kwansik Nam</title>", `${meta}\n    <title>${title}</title>`)
     .replace('<div id="root"></div>', `<div id="root">${appHtml}</div>`);
   const directory = resolve(root, `dist${route.path}`);
   await mkdir(directory, { recursive: true });

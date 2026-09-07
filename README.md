@@ -40,6 +40,10 @@ npm run preview
 
 ## 콘텐츠 수정 위치
 
+아카이브는 전체·디자인·개발 카테고리로 나뉩니다. 개발 글은 아카이브의 개발 카테고리(`/:locale/archives?category=development`)에서 주제로 필터링할 수 있습니다. `src/content/development.json`에는 2026-09-07에 Velog `@snack`에서 가져온 공개 글 65개의 원문 Markdown, 작성일, 태그, 출처가 있습니다. 본문 이미지 82개는 `image/development/`에 보관했습니다. 영어 화면에서도 이 글들은 한국어 원문으로 표시합니다. 새 개발 글은 같은 구조로 추가하면 목록·상세·사이트맵에 반영됩니다. 현재 총 156개 다국어 경로를 생성합니다.
+
+디자인 생각 아카이브는 `/:locale/archives`에서 볼 수 있습니다. `src/content/archives.ts`의 `archives` 배열에 고유한 slug, 날짜, 한국어·영어 제목·요약·본문을 추가하면 목록과 상세 페이지, 프리렌더 및 사이트맵에 자동 반영됩니다. 현재 아카이브를 포함해 24개 다국어 경로를 생성합니다.
+
 - 프로젝트 목록: `src/content/projects.ts`
 - 프로젝트 상세: `src/content/projectDetails/`
 - 기존 한국어 원문 연결: `src/content/legacyKorean.ts`와 루트의 기존 `.html` 파일
@@ -48,6 +52,8 @@ npm run preview
 - 공통 번역: `src/content/ui.ts`
 
 사진을 추가할 때는 이미지 파일을 `image/` 아래에 넣고 `src/content/photography.ts`의 `photographs` 배열에 한국어·영어 메타데이터를 추가합니다. 피드와 상세 페이지는 자동으로 만들어집니다.
+
+사진 메뉴(`/ko/photography`)를 열면 촬영일 기준 최신순으로 전체 사진 갤러리가 바로 표시됩니다. `/ko/photography/recents`도 전체 사진 갤러리로 유지합니다. `photoAlbums`에 고유한 slug와 한국어·영어 제목을 추가하고, 사진의 `albumSlugs`에 해당 slug를 지정하면 앨범이 연결됩니다. 선택적으로 `coverSlug`로 표지 사진을 지정할 수 있습니다. 사진 slug에는 예약 경로인 `recents`, `albums`를 사용하지 않습니다. 앨범과 사진 상세는 프리렌더·사이트맵에 자동 포함되며, 현재 빈 사진 데이터를 기준으로 총 26개 경로를 생성합니다.
 
 한국어 프로젝트와 About은 기존 사이트의 문장, 목록, 버튼, 개행과 미디어 구성을 정확히 보존하기 위해 루트의 기존 HTML을 원문으로 사용합니다. 한국어 원문을 바꿀 때는 해당 `.html`을 수정하고 `npm run check`로 이미지·폰트 경로를 확인합니다.
 
