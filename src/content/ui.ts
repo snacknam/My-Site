@@ -3,7 +3,7 @@ import type { Locale } from "../types/content";
 export const ui = {
   ko: {
     introduction: ["안녕하세요 :)", "기술을 이해하고 시스템을 설계하는", "디자이너 남관식입니다"],
-    navigation: { projects: "프로젝트", photography: "사진", development: "개발", about: "소개", language: "EN" },
+    navigation: { projects: "프로젝트", photography: "사진", archives: "아카이브", about: "소개", language: "EN" },
     languageLabel: "영어로 보기",
     primaryNavigationLabel: "주요 메뉴",
     footerNavigationLabel: "하단 메뉴",
@@ -13,7 +13,7 @@ export const ui = {
   },
   en: {
     introduction: ["Hello :)", "I understand technology and design systems.", "I'm Kwansik Nam, a product designer."],
-    navigation: { projects: "Projects", photography: "Photography", development: "Development", about: "About", language: "KO" },
+    navigation: { projects: "Projects", photography: "Photography", archives: "Archive", about: "About", language: "KO" },
     languageLabel: "View in Korean",
     primaryNavigationLabel: "Primary navigation",
     footerNavigationLabel: "Footer navigation",
@@ -23,7 +23,7 @@ export const ui = {
   },
 } satisfies Record<Locale, {
   introduction: string[];
-  navigation: { projects: string; photography: string; development: string; about: string; language: string };
+  navigation: { projects: string; photography: string; archives: string; about: string; language: string };
   languageLabel: string;
   primaryNavigationLabel: string;
   footerNavigationLabel: string;

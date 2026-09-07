@@ -8,9 +8,10 @@ interface SiteLayoutProps {
   children: ReactNode;
   locale: Locale;
   pageTitle?: string;
+  wide?: boolean;
 }
 
-export function SiteLayout({ children, locale, pageTitle }: SiteLayoutProps) {
+export function SiteLayout({ children, locale, pageTitle, wide = false }: SiteLayoutProps) {
   const text = ui[locale];
 
   useEffect(() => {
@@ -19,7 +20,7 @@ export function SiteLayout({ children, locale, pageTitle }: SiteLayoutProps) {
   }, [locale, pageTitle]);
 
   return (
-    <div className="site-shell">
+    <div className={wide ? "site-shell site-shell-wide" : "site-shell"}>
       <a className="skip-link" href="#main-content">{text.skipToContent}</a>
       <SiteNavigation locale={locale} />
       <main id="main-content">{children}</main>
@@ -28,7 +29,7 @@ export function SiteLayout({ children, locale, pageTitle }: SiteLayoutProps) {
         <nav className="menu" aria-label={text.footerNavigationLabel}>
           <Link to={`/${locale}`}>{text.navigation.projects}</Link>
           <Link to={`/${locale}/photography`}>{text.navigation.photography}</Link>
-          <a className="development-link" href="https://velog.io/@snack" target="_blank" rel="noreferrer">{text.navigation.development}</a>
+          <Link to={`/${locale}/archives`}>{text.navigation.archives}</Link>
           <Link to={`/${locale}/about`}>{text.navigation.about}</Link>
         </nav>
       </footer>
