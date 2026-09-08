@@ -71,9 +71,13 @@ export function PhotoZoom({ photo, source, locale, onClose }: PhotoZoomProps) {
 
   return <dialog ref={dialogRef} className="photo-lightbox"
     aria-label={locale === "ko" ? "사진 확대 보기" : "Enlarged photograph"}
-    aria-description={locale === "ko" ? "Esc 키나 사진 바깥 영역을 누르면 닫힙니다." : "Press Escape or click outside the photograph to close."}
+    aria-description={locale === "ko" ? "Esc 키나 사진 바깥 영역을 누르면 닫힙니다. 모바일에서는 사진을 눌러도 닫힙니다." : "Press Escape or click outside the photograph to close. On mobile, tap the photograph to close."}
     onCancel={(event) => { event.preventDefault(); close(); }}
-    onClick={(event) => { if (event.target === event.currentTarget) close(); }}>
+    onClick={(event) => {
+      const outsidePhoto = event.target === event.currentTarget;
+      const mobilePhotoTap = event.target === imageRef.current && window.matchMedia("(max-width: 600px)").matches;
+      if (outsidePhoto || mobilePhotoTap) close();
+    }}>
     <img ref={imageRef} src={imageUrl} width={photo.width} height={photo.height} alt={photo.alt[locale]} />
   </dialog>;
 }
