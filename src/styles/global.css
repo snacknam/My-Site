@@ -105,16 +105,18 @@ img { display: block; max-width: 100%; }
 .page-intro { display: flex; flex-direction: column; gap: var(--space-2); padding: var(--space-5) 0 var(--space-6); }
 .page-intro p, .empty-state { color: var(--color-text-secondary); font-size: 15px; font-weight: 300; }
 .empty-state { min-height: 360px; padding-top: var(--space-5); }
-.site-shell-wide { max-width: 1440px; margin-inline: auto; padding-inline: 40px; }
-.photo-gallery-heading { margin: 16px 0 40px; }
-.photo-gallery-heading > div { display: flex; align-items: baseline; gap: 20px; margin-top: 32px; }
-.photo-gallery-heading h1 { font-size: 20px; font-weight: 400; }
-.photo-gallery-heading p { font-size: 14px; color: var(--color-text-secondary); }
 .photo-empty { min-height: 45vh; display: grid; place-items: center; color: var(--color-text-secondary); font-size: 16px; }
-.photo-grid { columns: 3; column-gap: var(--space-3); margin-bottom: var(--space-6); }
-.photo-grid a { display: block; margin-bottom: var(--space-3); break-inside: avoid; }
+.photo-grid { display: grid; grid-template-columns: repeat(12, minmax(0, 1fr)); align-items: center; gap: 48px 24px; margin-bottom: var(--space-6); }
+.photo-grid a { display: block; min-width: 0; grid-column: span 4; }
+.photo-grid a:nth-child(7n + 1), .photo-grid a:nth-child(7n) { grid-column: span 7; }
+.photo-grid a:nth-child(7n + 2), .photo-grid a:nth-child(7n + 6) { grid-column: span 5; }
 .photo-grid img { width: 100%; height: auto; }
+@media (prefers-reduced-motion: no-preference) {
+  .photo-grid a { transition: opacity 700ms ease-out, transform 700ms cubic-bezier(0.22, 1, 0.36, 1); }
+  .photo-grid a.photo-pending { opacity: 0; transform: translateY(18px); }
+}
 .photo-detail { display: flex; flex-direction: column; gap: var(--space-4); margin: var(--space-5) 0 var(--space-6); }
+.photo-detail > img { width: 100%; height: auto; }
 .photo-detail > div { display: flex; flex-wrap: wrap; gap: var(--space-2) var(--space-3); color: var(--color-text-secondary); font-size: 14px; }
 
 .archive-list { list-style: none; min-height: 360px; margin-bottom: 80px; }
@@ -227,8 +229,9 @@ img { display: block; max-width: 100%; }
   .project-detail-intro { padding-top: var(--space-5); }
   .about-hero { margin-top: var(--space-5); }
   .career-year { grid-template-columns: 1fr 8fr; gap: var(--space-5); }
-  .photo-grid { columns: 2; }
-  .site-shell-wide { margin-inline: 0; padding-inline: 24px; }
+  .photo-grid { gap: 28px 16px; }
+  .photo-grid a:nth-child(n) { grid-column: span 6; }
+  .photo-grid a:nth-child(7n + 1) { grid-column: span 12; }
   .legacy-project h1 { margin-top: 40px; }
   .legacy-project .contents { gap: 160px; }
   .legacy-project .video_grid { display: flex; overflow-x: scroll; gap: 20px; scrollbar-width: none; }
