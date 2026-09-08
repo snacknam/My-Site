@@ -106,11 +106,11 @@ img { display: block; max-width: 100%; }
 .page-intro p, .empty-state { color: var(--color-text-secondary); font-size: 15px; font-weight: 300; }
 .empty-state { min-height: 360px; padding-top: var(--space-5); }
 .photo-empty { min-height: 45vh; display: grid; place-items: center; color: var(--color-text-secondary); font-size: 16px; }
-.photo-grid { display: grid; grid-template-columns: repeat(12, minmax(0, 1fr)); align-items: center; gap: 48px 24px; margin-bottom: var(--space-6); }
+.photo-grid { display: grid; grid-template-columns: repeat(12, minmax(0, 1fr)); align-items: center; gap: 16px; margin-bottom: var(--space-6); }
 .photo-grid .photo-card { display: block; min-width: 0; grid-column: span 4; }
 .photo-grid .photo-card:nth-child(7n + 1), .photo-grid .photo-card:nth-child(7n) { grid-column: span 7; }
 .photo-grid .photo-card:nth-child(7n + 2), .photo-grid .photo-card:nth-child(7n + 6) { grid-column: span 5; }
-.photo-card { border: 0; padding: 0; background: transparent; cursor: zoom-in; }
+.photo-card { border: 0; padding: 0; background: transparent; cursor: pointer; }
 .photo-grid img { width: 100%; height: auto; }
 @media (prefers-reduced-motion: no-preference) {
   .photo-grid .photo-card { transition: opacity 700ms ease-out, transform 700ms cubic-bezier(0.22, 1, 0.36, 1); }
@@ -229,7 +229,6 @@ img { display: block; max-width: 100%; }
   .project-detail-intro { padding-top: var(--space-5); }
   .about-hero { margin-top: var(--space-5); }
   .career-year { grid-template-columns: 1fr 8fr; gap: var(--space-5); }
-  .photo-grid { gap: 28px 16px; }
   .photo-grid .photo-card:nth-child(n) { grid-column: span 6; }
   .photo-grid .photo-card:nth-child(7n + 1) { grid-column: span 12; }
   .legacy-project h1 { margin-top: 40px; }
@@ -254,6 +253,7 @@ img { display: block; max-width: 100%; }
 .photo-zoom-source > img { visibility: hidden; }
 
 @media (max-width: 600px) {
+  .photo-lightbox { padding-inline: 8px; }
   .photo-lightbox::backdrop { background: rgba(0, 0, 0, 0.72); }
-  .photo-lightbox > img { cursor: zoom-out; }
+  .photo-lightbox > img { cursor: pointer; }
 }

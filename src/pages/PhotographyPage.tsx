@@ -83,7 +83,7 @@ export function PhotographyPage({ locale, recent = false, albumSlug }: { locale:
         }} aria-haspopup="dialog" key={photo.slug}>
         <img src={photo.thumbnail ?? photo.image}
           srcSet={photo.thumbnail ? `${photo.thumbnail} ${thumbnailWidth}w, ${photo.image} ${photo.width}w` : undefined}
-          sizes={`(max-width: 600px) ${mobileWidth}, (max-width: 800px) ${Math.round(span / 12 * 100)}vw, ${Math.round((800 - 24 * 11) / 12 * span + 24 * (span - 1))}px`}
+          sizes={`(max-width: 600px) ${mobileWidth}, (max-width: 800px) ${Math.round(span / 12 * 100)}vw, ${Math.round((800 - 16 * 11) / 12 * span + 16 * (span - 1))}px`}
           width={photo.width} height={photo.height} alt={photo.alt[locale]} loading={index < 3 ? "eager" : "lazy"} decoding="async" />
       </button>;
       })}
