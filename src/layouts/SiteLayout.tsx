@@ -8,10 +8,9 @@ interface SiteLayoutProps {
   children: ReactNode;
   locale: Locale;
   pageTitle?: string;
-  wide?: boolean;
 }
 
-export function SiteLayout({ children, locale, pageTitle, wide = false }: SiteLayoutProps) {
+export function SiteLayout({ children, locale, pageTitle }: SiteLayoutProps) {
   const text = ui[locale];
 
   useEffect(() => {
@@ -20,7 +19,7 @@ export function SiteLayout({ children, locale, pageTitle, wide = false }: SiteLa
   }, [locale, pageTitle]);
 
   return (
-    <div className={wide ? "site-shell site-shell-wide" : "site-shell"}>
+    <div className="site-shell">
       <a className="skip-link" href="#main-content">{text.skipToContent}</a>
       <SiteNavigation locale={locale} />
       <main id="main-content">{children}</main>
