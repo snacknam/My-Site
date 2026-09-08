@@ -76,7 +76,7 @@ export function PhotographyPage({ locale, recent = false, albumSlug }: { locale:
         const position = index % 7;
         const span = position === 0 || position === 6 ? 7 : position === 1 || position === 5 ? 5 : 4;
         const thumbnailWidth = Math.round(photo.width * Math.min(1, 720 / Math.max(photo.width, photo.height)));
-        const mobileWidth = position === 0 ? "calc(100vw - 48px)" : "calc((100vw - 64px) / 2)";
+        const mobileWidth = position === 0 ? "calc(100vw - 32px)" : "calc((100vw - 48px) / 2)";
         return <button type="button" className={zoom?.photo.slug === photo.slug ? "photo-card photo-zoom-source" : "photo-card"} onClick={(event) => {
           const source = event.currentTarget.querySelector("img");
           if (source) setZoom({ photo, source });
