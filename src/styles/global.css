@@ -215,7 +215,7 @@ img { display: block; max-width: 100%; }
 @keyframes moonSwing { from { transform: rotate(-15deg); } to { transform: rotate(15deg); } }
 
 @media (max-width: 600px) {
-  :root { --navigation-height: 80px; }
+  :root { --navigation-height: 80px; --page-gutter: 16px; }
   .site-shell { margin: 0 var(--page-gutter); }
   .menu { gap: var(--space-4); }
   .archive-entry { grid-template-columns: minmax(0, 1fr) 20px; gap: 12px; }
