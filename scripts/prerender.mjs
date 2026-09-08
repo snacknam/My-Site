@@ -25,7 +25,7 @@ const routes = [
     ...archives.map((entry) => ({ path: `/${locale}/archives/${entry.slug}`, title: `${entry.content[locale].title} — Kwansik Nam`, description: entry.content[locale].summary })),
     { path: `/${locale}/photography/recents`, title: `${photographyLabels[locale].recent} — Kwansik Nam`, description: locale === "ko" ? "최근에 기록한 사진들" : "Recent photographs by Kwansik Nam" },
     ...photoAlbums.map((album) => ({ path: `/${locale}/photography/albums/${album.slug}`, title: `${album.title[locale]} — Kwansik Nam`, description: album.title[locale] })),
-    ...photographs.map((photo) => ({ path: `/${locale}/photography/${photo.slug}`, title: `${photo.location[locale]} — Kwansik Nam`, description: photo.caption?.[locale] ?? photo.alt[locale] })),
+    ...photographs.map((photo) => ({ path: `/${locale}/photography/${photo.slug}`, title: "Photography — Kwansik Nam", description: photo.alt[locale] })),
   ]),
 ];
 
