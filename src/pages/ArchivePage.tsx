@@ -46,11 +46,10 @@ export function ArchivePage({ locale, slug }: { locale: Locale; slug?: string })
   }
   return (
     <SiteLayout locale={locale} pageTitle={labels.title}>
-      <header className="page-intro"><p>{labels.description}</p></header>
       <nav className="archive-filters" aria-label={labels.title}>
         {(["all", "design", "development"] as const).map((value) => <Link key={value} to={value === "all" ? `/${locale}/archives` : `/${locale}/archives?category=${value}`} aria-current={category === value ? "page" : undefined}>{labels[value]} <span>{value === "all" ? archives.length : archives.filter((entry) => entry.category === value).length}</span></Link>)}
       </nav>
-      {category === "development" && <label className="archive-topic"><span>{labels.topic}</span><span className="archive-topic-control"><select value={topic} onChange={(event) => setSearchParams(event.target.value ? { category, topic: event.target.value } : { category })}><option value="">{labels.allTopics}</option>{topics.map((value) => <option key={value} value={value}>{value} ({archives.filter((entry) => entry.topic === value).length})</option>)}</select><span aria-hidden="true">⌄</span></span></label>}
+      {category === "development" && <div className="archive-topic"><span className="archive-topic-control"><select aria-label={labels.topic} value={topic} onChange={(event) => setSearchParams(event.target.value ? { category, topic: event.target.value } : { category })}><option value="">{labels.allTopics}</option>{topics.map((value) => <option key={value} value={value}>{value} ({archives.filter((entry) => entry.topic === value).length})</option>)}</select><span aria-hidden="true">⌄</span></span></div>}
       <ul className="archive-list">
         {[...filtered].sort((a, b) => b.date.localeCompare(a.date)).map((entry) => {
           const copy = entry.content[locale];
