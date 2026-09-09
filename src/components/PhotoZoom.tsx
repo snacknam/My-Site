@@ -36,7 +36,7 @@ export function PhotoZoom({ photo, source, locale, onClose }: PhotoZoomProps) {
     const opening = image.animate([
       { transform: originTransform() },
       { transform: "translate(0, 0) scale(1)" },
-    ], { duration: reducedMotion ? 0 : 460, easing: "cubic-bezier(0.22, 1, 0.36, 1)", fill: "both" });
+    ], { duration: reducedMotion ? 0 : 500, easing: "cubic-bezier(0.22, 1, 0.36, 1)", fill: "both" });
     animationRef.current = opening;
     opening.onfinish = () => opening.cancel();
 
@@ -57,6 +57,7 @@ export function PhotoZoom({ photo, source, locale, onClose }: PhotoZoomProps) {
     const image = imageRef.current;
     if (!image || closingRef.current) return;
     closingRef.current = true;
+    dialogRef.current?.classList.add("is-closing");
     const currentTransform = getComputedStyle(image).transform;
     const destination = originTransform();
     animationRef.current?.cancel();
@@ -64,7 +65,7 @@ export function PhotoZoom({ photo, source, locale, onClose }: PhotoZoomProps) {
     const closing = image.animate([
       { transform: currentTransform },
       { transform: destination },
-    ], { duration: reducedMotion ? 0 : 360, easing: "cubic-bezier(0.4, 0, 0.2, 1)", fill: "both" });
+    ], { duration: reducedMotion ? 0 : 500, easing: "cubic-bezier(0.4, 0, 0.2, 1)", fill: "both" });
     animationRef.current = closing;
     closing.onfinish = onClose;
   };
