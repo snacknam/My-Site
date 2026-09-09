@@ -25,7 +25,7 @@ export function ArchivePage({ locale, slug }: { locale: Locale; slug?: string })
         <article className="archive-article">
           <Link className="archive-back" to={`/${locale}/archives?category=${entry.category}`}>← {labels.back}</Link>
           <header className="archive-heading">
-            <p className="archive-meta">{copy.tags.join(" · ")}<span aria-hidden="true"> / </span><time dateTime={entry.date}>{entry.date.replaceAll("-", ".")}</time></p>
+            <p className="archive-meta">{copy.tags.join(" · ")}</p>
             <h1>{copy.title}</h1>
             <p className="archive-summary">{copy.summary}</p>
             {entry.source && <p className="archive-source"><a href={entry.source} target="_blank" rel="noreferrer">{labels.source} ↗</a>{locale === "en" && <span>{labels.original}</span>}</p>}
@@ -35,6 +35,7 @@ export function ArchivePage({ locale, slug }: { locale: Locale; slug?: string })
               img: ({ src, alt }) => <img src={src} alt={alt ?? ""} loading="lazy" decoding="async" />,
               table: ({ children }) => <div className="archive-table-scroll"><table>{children}</table></div>,
             }}>{copy.markdown}</Markdown>}
+            {copy.heroImage && <figure className="archive-figure"><img src={copy.heroImage.src} alt={copy.heroImage.alt} loading="lazy" decoding="async" />{copy.heroImage.caption && <figcaption>{copy.heroImage.caption}</figcaption>}</figure>}
             {copy.introduction.map((paragraph) => <p key={paragraph}>{paragraph}</p>)}
             {copy.sections.map((section) => <section key={section.title}><h2>{section.title}</h2>{section.paragraphs.map((paragraph) => <p key={paragraph}>{paragraph}</p>)}</section>)}
           </div>
@@ -45,16 +46,15 @@ export function ArchivePage({ locale, slug }: { locale: Locale; slug?: string })
   }
   return (
     <SiteLayout locale={locale} pageTitle={labels.title}>
-      <header className="page-intro"><h1>{labels.title}</h1><p>{labels.description}</p></header>
+      <header className="page-intro"><p>{labels.description}</p></header>
       <nav className="archive-filters" aria-label={labels.title}>
         {(["all", "design", "development"] as const).map((value) => <Link key={value} to={value === "all" ? `/${locale}/archives` : `/${locale}/archives?category=${value}`} aria-current={category === value ? "page" : undefined}>{labels[value]} <span>{value === "all" ? archives.length : archives.filter((entry) => entry.category === value).length}</span></Link>)}
       </nav>
-      {category === "development" && <label className="archive-topic">{labels.topic}<select value={topic} onChange={(event) => setSearchParams(event.target.value ? { category, topic: event.target.value } : { category })}><option value="">{labels.allTopics}</option>{topics.map((value) => <option key={value} value={value}>{value} ({archives.filter((entry) => entry.topic === value).length})</option>)}</select></label>}
+      {category === "development" && <label className="archive-topic"><span>{labels.topic}</span><span className="archive-topic-control"><select value={topic} onChange={(event) => setSearchParams(event.target.value ? { category, topic: event.target.value } : { category })}><option value="">{labels.allTopics}</option>{topics.map((value) => <option key={value} value={value}>{value} ({archives.filter((entry) => entry.topic === value).length})</option>)}</select><span aria-hidden="true">⌄</span></span></label>}
       <ul className="archive-list">
         {[...filtered].sort((a, b) => b.date.localeCompare(a.date)).map((entry) => {
           const copy = entry.content[locale];
           return <li key={entry.slug}><Link className="archive-entry" to={`/${locale}/archives/${entry.slug}`}>
-            <time className="archive-meta" dateTime={entry.date}>{entry.date.replaceAll("-", ".")}</time>
             <div><p className="archive-meta">{copy.tags.join(" · ")}</p><h2>{copy.title}</h2><p className="archive-summary">{copy.summary}</p></div>
             <span className="archive-arrow" aria-hidden="true">↗</span>
           </Link></li>;
