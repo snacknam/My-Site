@@ -3,6 +3,8 @@ import Markdown from "react-markdown";
 import remarkGfm from "remark-gfm";
 import rehypeRaw from "rehype-raw";
 import rehypeSanitize from "rehype-sanitize";
+import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select";
+import { Tabs, TabsList, TabsTrigger } from "@/components/ui/tabs";
 import { archives, archiveLabels } from "../content/archives";
 import { SiteLayout } from "../layouts/SiteLayout";
 import type { Locale } from "../types/content";
@@ -46,10 +48,30 @@ export function ArchivePage({ locale, slug }: { locale: Locale; slug?: string })
   }
   return (
     <SiteLayout locale={locale} pageTitle={labels.title}>
-      <nav className="archive-filters" aria-label={labels.title}>
-        {(["all", "design", "development"] as const).map((value) => <Link key={value} to={value === "all" ? `/${locale}/archives` : `/${locale}/archives?category=${value}`} aria-current={category === value ? "page" : undefined}>{labels[value]} <span>{value === "all" ? archives.length : archives.filter((entry) => entry.category === value).length}</span></Link>)}
-      </nav>
-      {category === "development" && <div className="archive-topic"><span className="archive-topic-control"><select aria-label={labels.topic} value={topic} onChange={(event) => setSearchParams(event.target.value ? { category, topic: event.target.value } : { category })}><option value="">{labels.allTopics}</option>{topics.map((value) => <option key={value} value={value}>{value} ({archives.filter((entry) => entry.topic === value).length})</option>)}</select><span aria-hidden="true">⌄</span></span></div>}
+      <div className="archive-controls">
+        <Tabs value={category}>
+          <TabsList aria-label={labels.title}>
+            {(["all", "design", "development"] as const).map((value) => (
+              <TabsTrigger key={value} value={value} asChild>
+                <Link to={value === "all" ? `/${locale}/archives` : `/${locale}/archives?category=${value}`}>
+                  {labels[value]} <span>{value === "all" ? archives.length : archives.filter((entry) => entry.category === value).length}</span>
+                </Link>
+              </TabsTrigger>
+            ))}
+          </TabsList>
+        </Tabs>
+        {category === "development" && (
+          <Select value={topic || "all"} onValueChange={(value) => setSearchParams(value === "all" ? { category } : { category, topic: value })}>
+            <SelectTrigger className="archive-topic" aria-label={labels.topic}>
+              <SelectValue />
+            </SelectTrigger>
+            <SelectContent>
+              <SelectItem value="all">{labels.allTopics}</SelectItem>
+              {topics.map((value) => <SelectItem key={value} value={value}>{value} ({archives.filter((entry) => entry.topic === value).length})</SelectItem>)}
+            </SelectContent>
+          </Select>
+        )}
+      </div>
       <ul className="archive-list">
         {[...filtered].sort((a, b) => b.date.localeCompare(a.date)).map((entry) => {
           const copy = entry.content[locale];
