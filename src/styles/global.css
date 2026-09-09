@@ -254,6 +254,14 @@ img { display: block; max-width: 100%; }
 
 @media (max-width: 600px) {
   .photo-lightbox { padding-inline: 8px; }
-  .photo-lightbox::backdrop { background: rgba(0, 0, 0, 0.72); }
+  .photo-lightbox::backdrop { background: rgba(0, 0, 0, 0.72); opacity: 1; transition: opacity 500ms ease-out; }
+  .photo-lightbox.is-closing::backdrop { opacity: 0; transition-duration: 500ms; }
+  @starting-style {
+    .photo-lightbox[open]::backdrop { opacity: 0; }
+  }
   .photo-lightbox > img { cursor: pointer; }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .photo-lightbox::backdrop { transition: none; }
 }
