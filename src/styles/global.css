@@ -254,8 +254,8 @@ img { display: block; max-width: 100%; }
 
 @media (max-width: 600px) {
   .photo-lightbox { padding-inline: 8px; }
-  .photo-lightbox::backdrop { background: rgba(0, 0, 0, 0.72); opacity: 1; transition: opacity 500ms ease-out; }
-  .photo-lightbox.is-closing::backdrop { opacity: 0; transition-duration: 500ms; }
+  .photo-lightbox::backdrop { background: rgba(0, 0, 0, 0.72); opacity: 1; transition: opacity 460ms ease-out; }
+  .photo-lightbox.is-closing::backdrop { opacity: 0; transition-duration: 360ms; }
   @starting-style {
     .photo-lightbox[open]::backdrop { opacity: 0; }
   }
