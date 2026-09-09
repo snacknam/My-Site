@@ -140,7 +140,7 @@ img { display: block; max-width: 100%; }
 .ui-tabs-list { display: inline-flex; align-items: center; gap: 2px; padding: 2px; border-radius: 6px; background: #f4f4f5; }
 .ui-tabs-trigger { display: inline-flex; align-items: center; justify-content: center; min-height: 30px; padding: 0 11px; border: 0; border-radius: 4px; background: transparent; color: #71717a; font: inherit; font-size: 14px; white-space: nowrap; cursor: pointer; transition: color 160ms ease, background 160ms ease, box-shadow 160ms ease; }
 .ui-tabs-trigger:hover { color: var(--color-text); }
-.ui-tabs-trigger[data-state="active"] { color: var(--color-text); background: #fff; box-shadow: 0 1px 2px rgba(0, 0, 0, 0.12); }
+.ui-tabs-trigger[data-active] { color: var(--color-text); background: #fff; box-shadow: 0 1px 2px rgba(0, 0, 0, 0.12); }
 .ui-tabs-trigger:focus-visible { outline: 2px solid var(--color-focus); outline-offset: 2px; }
 .ui-tabs-trigger span { margin-left: 5px; color: #999; font-size: 12px; }
 .ui-tabs-content:focus-visible { outline: 2px solid var(--color-focus); outline-offset: 2px; }
@@ -148,7 +148,8 @@ img { display: block; max-width: 100%; }
 .ui-select-trigger:hover { border-color: #d4d4d8; }
 .ui-select-trigger:focus-visible { outline: 2px solid var(--color-focus); outline-offset: 2px; }
 .ui-select-trigger > svg { width: 14px; height: 14px; color: #71717a; }
-.ui-select-content { z-index: 50; min-width: var(--radix-select-trigger-width); max-height: var(--radix-select-content-available-height); overflow: hidden; border: 1px solid #e4e4e7; border-radius: 6px; background: #fff; box-shadow: 0 6px 18px rgba(0, 0, 0, 0.12); animation: selectIn 140ms ease-out; }
+.ui-select-positioner { z-index: 50; min-width: var(--anchor-width); }
+.ui-select-content { width: var(--anchor-width); max-height: var(--available-height); overflow: hidden; border: 1px solid #e4e4e7; border-radius: 6px; background: #fff; box-shadow: 0 6px 18px rgba(0, 0, 0, 0.12); transform-origin: var(--transform-origin); animation: selectIn 140ms ease-out; }
 .ui-select-viewport { padding: 4px; }
 .ui-select-item { position: relative; display: flex; align-items: center; min-height: 32px; padding: 0 32px 0 28px; border-radius: 4px; font-size: 14px; outline: none; cursor: default; user-select: none; }
 .ui-select-item[data-highlighted] { background: #f4f4f5; }

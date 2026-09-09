@@ -17,6 +17,10 @@ export function ArchivePage({ locale, slug }: { locale: Locale; slug?: string })
   const category = requestedCategory === "design" || requestedCategory === "development" ? requestedCategory : "all";
   const topic = searchParams.get("topic") ?? "";
   const topics = [...new Set(archives.flatMap((entry) => entry.topic ? [entry.topic] : []))].sort();
+  const topicItems = [
+    { value: "all", label: labels.allTopics },
+    ...topics.map((value) => ({ value, label: `${value} (${archives.filter((entry) => entry.topic === value).length})` })),
+  ];
   const filtered = archives.filter((entry) => (category === "all" || entry.category === category) && (category !== "development" || !topic || entry.topic === topic));
   if (slug) {
     const entry = archives.find((item) => item.slug === slug);
@@ -52,22 +56,19 @@ export function ArchivePage({ locale, slug }: { locale: Locale; slug?: string })
         <Tabs value={category}>
           <TabsList aria-label={labels.title}>
             {(["all", "design", "development"] as const).map((value) => (
-              <TabsTrigger key={value} value={value} asChild>
-                <Link to={value === "all" ? `/${locale}/archives` : `/${locale}/archives?category=${value}`}>
-                  {labels[value]} <span>{value === "all" ? archives.length : archives.filter((entry) => entry.category === value).length}</span>
-                </Link>
+              <TabsTrigger key={value} value={value} nativeButton={false} render={<Link to={value === "all" ? `/${locale}/archives` : `/${locale}/archives?category=${value}`} />}>
+                {labels[value]} <span>{value === "all" ? archives.length : archives.filter((entry) => entry.category === value).length}</span>
               </TabsTrigger>
             ))}
           </TabsList>
         </Tabs>
         {category === "development" && (
-          <Select value={topic || "all"} onValueChange={(value) => setSearchParams(value === "all" ? { category } : { category, topic: value })}>
+          <Select items={topicItems} value={topic || "all"} onValueChange={(value) => setSearchParams(!value || value === "all" ? { category } : { category, topic: value })}>
             <SelectTrigger className="archive-topic" aria-label={labels.topic}>
               <SelectValue />
             </SelectTrigger>
             <SelectContent>
-              <SelectItem value="all">{labels.allTopics}</SelectItem>
-              {topics.map((value) => <SelectItem key={value} value={value}>{value} ({archives.filter((entry) => entry.topic === value).length})</SelectItem>)}
+              {topicItems.map((item) => <SelectItem key={item.value} value={item.value}>{item.label}</SelectItem>)}
             </SelectContent>
           </Select>
         )}

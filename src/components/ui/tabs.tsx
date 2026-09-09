@@ -1,5 +1,5 @@
 import * as React from "react";
-import * as TabsPrimitive from "@radix-ui/react-tabs";
+import { Tabs as TabsPrimitive } from "@base-ui/react/tabs";
 
 import { cn } from "@/lib/utils";
 
@@ -11,12 +11,12 @@ function TabsList({ className, ...props }: React.ComponentProps<typeof TabsPrimi
   return <TabsPrimitive.List className={cn("ui-tabs-list", className)} {...props} />;
 }
 
-function TabsTrigger({ className, ...props }: React.ComponentProps<typeof TabsPrimitive.Trigger>) {
-  return <TabsPrimitive.Trigger className={cn("ui-tabs-trigger", className)} {...props} />;
+function TabsTrigger({ className, ...props }: React.ComponentProps<typeof TabsPrimitive.Tab>) {
+  return <TabsPrimitive.Tab className={cn("ui-tabs-trigger", className)} {...props} />;
 }
 
-function TabsContent({ className, ...props }: React.ComponentProps<typeof TabsPrimitive.Content>) {
-  return <TabsPrimitive.Content className={cn("ui-tabs-content", className)} {...props} />;
+function TabsContent({ className, ...props }: React.ComponentProps<typeof TabsPrimitive.Panel>) {
+  return <TabsPrimitive.Panel className={cn("ui-tabs-content", className)} {...props} />;
 }
 
 export { Tabs, TabsContent, TabsList, TabsTrigger };

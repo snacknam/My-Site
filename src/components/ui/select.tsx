@@ -1,10 +1,10 @@
 import * as React from "react";
-import * as SelectPrimitive from "@radix-ui/react-select";
+import { Select as SelectPrimitive } from "@base-ui/react/select";
 import { CheckIcon, ChevronDownIcon, ChevronUpIcon } from "lucide-react";
 
 import { cn } from "@/lib/utils";
 
-function Select(props: React.ComponentProps<typeof SelectPrimitive.Root>) {
+function Select<Value>(props: SelectPrimitive.Root.Props<Value>) {
   return <SelectPrimitive.Root {...props} />;
 }
 
@@ -16,25 +16,27 @@ function SelectTrigger({ className, children, ...props }: React.ComponentProps<t
   return (
     <SelectPrimitive.Trigger className={cn("ui-select-trigger", className)} {...props}>
       {children}
-      <SelectPrimitive.Icon asChild>
+      <SelectPrimitive.Icon>
         <ChevronDownIcon aria-hidden="true" />
       </SelectPrimitive.Icon>
     </SelectPrimitive.Trigger>
   );
 }
 
-function SelectContent({ className, children, position = "popper", ...props }: React.ComponentProps<typeof SelectPrimitive.Content>) {
+function SelectContent({ className, children, ...props }: React.ComponentProps<typeof SelectPrimitive.Popup>) {
   return (
     <SelectPrimitive.Portal>
-      <SelectPrimitive.Content className={cn("ui-select-content", className)} position={position} {...props}>
-        <SelectPrimitive.ScrollUpButton className="ui-select-scroll-button">
-          <ChevronUpIcon aria-hidden="true" />
-        </SelectPrimitive.ScrollUpButton>
-        <SelectPrimitive.Viewport className="ui-select-viewport">{children}</SelectPrimitive.Viewport>
-        <SelectPrimitive.ScrollDownButton className="ui-select-scroll-button">
-          <ChevronDownIcon aria-hidden="true" />
-        </SelectPrimitive.ScrollDownButton>
-      </SelectPrimitive.Content>
+      <SelectPrimitive.Positioner className="ui-select-positioner" sideOffset={4} alignItemWithTrigger={false}>
+        <SelectPrimitive.Popup className={cn("ui-select-content", className)} {...props}>
+          <SelectPrimitive.ScrollUpArrow className="ui-select-scroll-button">
+            <ChevronUpIcon aria-hidden="true" />
+          </SelectPrimitive.ScrollUpArrow>
+          <SelectPrimitive.List className="ui-select-viewport">{children}</SelectPrimitive.List>
+          <SelectPrimitive.ScrollDownArrow className="ui-select-scroll-button">
+            <ChevronDownIcon aria-hidden="true" />
+          </SelectPrimitive.ScrollDownArrow>
+        </SelectPrimitive.Popup>
+      </SelectPrimitive.Positioner>
     </SelectPrimitive.Portal>
   );
 }
@@ -42,11 +44,9 @@ function SelectContent({ className, children, position = "popper", ...props }: R
 function SelectItem({ className, children, ...props }: React.ComponentProps<typeof SelectPrimitive.Item>) {
   return (
     <SelectPrimitive.Item className={cn("ui-select-item", className)} {...props}>
-      <span className="ui-select-item-indicator">
-        <SelectPrimitive.ItemIndicator>
-          <CheckIcon aria-hidden="true" />
-        </SelectPrimitive.ItemIndicator>
-      </span>
+      <SelectPrimitive.ItemIndicator className="ui-select-item-indicator">
+        <CheckIcon aria-hidden="true" />
+      </SelectPrimitive.ItemIndicator>
       <SelectPrimitive.ItemText>{children}</SelectPrimitive.ItemText>
     </SelectPrimitive.Item>
   );
