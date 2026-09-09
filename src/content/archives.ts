@@ -6,6 +6,7 @@ interface ArchiveCopy {
   summary: string;
   tags: string[];
   introduction: string[];
+  heroImage?: { src: string; alt: string; caption?: string };
   sections: { title: string; paragraphs: string[] }[];
   markdown?: string;
 }
@@ -30,58 +31,36 @@ const designArchives: ArchiveEntry[] = [{
   category: "design",
   content: {
     ko: {
-      title: "같은 모양이 아니어도, 하나로 느껴지는 이유",
-      summary: "도시의 색과 재질에서 디자인 시스템의 일관성을 생각하다.",
-      tags: ["디자인 시스템", "일관성"],
+      title: "도시의 통일성과 디자인 시스템",
+      summary: "산토리니의 재료와 색이 만드는 질서에서 서비스의 Foundation을 생각하다.",
+      tags: ["디자인 시스템", "Foundation"],
       introduction: [
-        "유현준 교수님의 도시 이야기를 듣다가 디자인 시스템이 떠올랐다. 내가 기억하는 이야기의 요지는 이렇다. 강남의 건물은 네모난 형태가 서로 비슷해도 도시 전체가 하나로 느껴지지는 않는다. 반면 그리스의 도시에서는 건물 모양이 달라도 파란색과 비슷한 재질이 반복되면서 통일감을 만든다는 것이다.",
-        "정확한 발언을 옮기기보다, 그 이야기를 듣고 내게 남은 생각을 기록해보려 한다. 서로 닮은 모양을 만드는 것과 하나의 인상을 만드는 것은 얼마나 다른 일일까?",
+        "유현준 교수님이 건축과 도시를 설명하며 산토리니를 예로 든 이야기가 기억에 남았다. 산토리니의 건축물은 형태가 제각각이지만 비슷한 재료와 질감, 흰색과 파란색이라는 공통된 색을 사용한다. 그 결과 도시 전체는 하나의 풍경으로 느껴지고, 서로 다른 형태는 그 안에서 각 건물의 개성이 된다.",
+        "반면 현대의 일반적인 도시에서는 많은 건물이 비슷한 빌딩 형태를 띠지만 외장 재료와 질감, 간판과 색은 저마다 다르다. 모두가 비슷한 모양을 선택하면서 개별 건물의 특징은 흐려지고, 도시 전체를 묶는 공통된 인상도 약해진다. 같은 형태를 반복하는 것과 일관된 경험을 만드는 일은 같지 않다.",
+        "이 차이를 생각하며 서비스의 일관성도 비슷한 방식으로 만들어질 수 있겠다고 생각했다. 버튼이나 카드의 형태를 똑같이 맞추는 것보다 타이포그래피, 컬러, 아이콘, Radius 같은 Foundation을 공통의 재료로 정의하는 것이 먼저일 수 있다. 이 기준이 화면마다 이어지면 대시보드와 온보딩처럼 목적과 구조가 다른 화면도 하나의 서비스로 느껴지고, 각 화면은 그 안에서 목적에 맞는 개성을 가질 수 있다.",
       ],
-      sections: [
-        { title: "모양보다 먼저 보이는 공통점", paragraphs: [
-          "디자인 시스템을 만들 때는 버튼, 카드, 입력창처럼 이름 붙일 수 있는 형태부터 생각하기 쉽다. 같은 컴포넌트를 쓰면 화면도 자연스럽게 일관되어 보일 것이라고 기대하게 된다.",
-          "그런데 같은 카드라도 배경색, 테두리, 그림자, 글자의 밀도가 다르면 전혀 다른 제품처럼 보일 수 있다. 반대로 구성이 다른 화면도 색의 쓰임과 글자의 위계, 여백의 리듬이 이어지면 같은 제품의 일부로 느껴진다. 도시의 색과 재질 이야기가 내게는 이 차이를 설명해주는 비유로 다가왔다.",
-        ] },
-        { title: "화면에도 색과 재질이 있다", paragraphs: [
-          "화면에서 재질에 해당하는 것은 무엇일까. 나는 배경과 표면의 관계, 경계선의 선명함, 그림자가 만드는 깊이 같은 것들을 떠올렸다. 여기에 타이포그래피와 여백이 더해지면 화면 고유의 감각이 만들어진다.",
-          "중요한 것은 같은 색상값을 반복하는 데서 끝나지 않는다는 점이다. 어떤 색이 행동을 유도하고, 어떤 표면이 정보를 묶고, 어떤 대비가 우선순위를 드러내는지까지 공유되어야 한다. 토큰은 그 판단을 여러 화면에서 다시 사용할 수 있도록 붙여둔 이름이라고 생각한다.",
-        ] },
-        { title: "공유할 기준과 달라도 되는 부분", paragraphs: [
-          "이 관점으로 보면 시스템을 설계할 때 던질 질문도 달라진다. 모든 화면을 같은 모양으로 만들기 전에, 이 제품이 같은 제품으로 느껴지게 하는 기준이 무엇인지 먼저 물어야 한다.",
-          "예를 들어 정보를 조밀하게 보여주는 대시보드와 하나의 행동에 집중시키는 시작 화면은 서로 다른 구성이 필요하다. 두 화면의 틀을 맞추는 대신 텍스트의 위계, 행동 색상의 의미, 표면과 경계의 규칙을 공유할 수 있다. 구성의 차이는 각 화면의 목적을 돕고, 공통 기준은 그 차이를 하나의 경험 안에 묶는다.",
-        ] },
-        { title: "다음 작업에서 확인하고 싶은 것", paragraphs: [
-          "다음에 화면들을 나란히 놓고 검토할 때는 컴포넌트의 모양만 비교하지 않으려 한다. 주요 행동이 같은 방식으로 눈에 들어오는지, 정보의 위계를 읽는 방식이 이어지는지, 표면의 구분이 같은 의미로 쓰이는지도 함께 보고 싶다.",
-          "나에게 좋은 디자인 시스템은 서로 다른 화면이 각자의 역할을 하면서도 자연스럽게 이어지도록 만드는 기준에 가깝다. 도시의 색과 재질에 관한 이야기가, 그 기준을 어디에서 찾아야 할지 다시 생각하게 했다.",
-        ] },
-      ],
+      heroImage: {
+        src: "/image/archives/santorini.jpg",
+        alt: "흰색 건물과 파란 지붕이 어우러진 산토리니의 도시 풍경",
+        caption: "비슷한 재료와 색 안에서 서로 다른 형태가 하나의 풍경을 만든다.",
+      },
+      sections: [],
     },
     en: {
-      title: "Why different shapes can still feel like one whole",
-      summary: "Thinking about coherence in design systems through the colors and materials of a city.",
-      tags: ["Design systems", "Coherence"],
+      title: "Urban coherence and design systems",
+      summary: "Thinking about a service's foundations through the order created by Santorini's materials and colors.",
+      tags: ["Design systems", "Foundation"],
       introduction: [
-        "A talk by Professor Yoo Hyun-joon about cities made me think about design systems. As I remember it, the buildings in Gangnam can have similar rectangular forms without making the city feel unified. In Greek cities, different building shapes can feel connected through recurring blue colors and similar materials.",
-        "This is a reflection on what stayed with me, rather than a verbatim account of his words. How different is making similar shapes from creating a shared impression?",
+        "I remember Professor Yoo Hyun-joon using Santorini as an example while discussing architecture and cities. Its buildings vary in form, yet they share similar materials and textures along with a common palette of white and blue. The city becomes one coherent landscape, while each building keeps its character through a different shape.",
+        "Many contemporary cities, in contrast, are filled with buildings that share a similar block-like form while their exterior materials, textures, signs, and colors all differ. Individual character fades as every building adopts a similar shape, yet the city still lacks a shared impression. Repeating a form is not the same as creating a consistent experience.",
+        "This difference made me think that consistency in a service may work in a similar way. Rather than making every button, card, and screen share the same form, a design system can first define typography, color, icons, and radius as its common materials. When these foundations continue across screens, a dashboard and onboarding flow can have different structures while still feeling like one service, with each expressing the character its purpose requires.",
       ],
-      sections: [
-        { title: "What we share beyond shape", paragraphs: [
-          "When building a design system, it is easy to begin with things we can name: buttons, cards, and inputs. We might expect that using the same components will naturally make our screens feel consistent.",
-          "Yet the same card can feel like it belongs to a different product when its background, border, shadow, and text density change. Screens with different layouts can still feel related when their use of color, type hierarchy, and spacing carries through. The story about cities gave me a useful analogy for that difference.",
-        ] },
-        { title: "Screens have materials, too", paragraphs: [
-          "What would material mean on a screen? I think of the relationship between backgrounds and surfaces, the sharpness of borders, and the depth created by shadows. Typography and spacing help give those surfaces a particular character.",
-          "Repeating a color value is only part of it. We also need a shared understanding of which colors invite action, which surfaces group information, and which contrasts establish priority. To me, tokens give those decisions names so they can be used again across screens.",
-        ] },
-        { title: "Shared rules, room for difference", paragraphs: [
-          "This perspective changes the questions I want to ask. Before trying to make screens look alike, I want to understand what makes this product feel like itself.",
-          "A dense dashboard and an onboarding screen focused on one action need different compositions. They can still share a text hierarchy, the meaning of action colors, and rules for surfaces and borders. Their differences serve their individual purposes; their shared rules connect them into one experience.",
-        ] },
-        { title: "What I want to look for next", paragraphs: [
-          "The next time I review screens side by side, I want to look beyond component shapes. Do primary actions stand out in the same way? Can I read the information hierarchy with the same expectations? Do surface distinctions carry the same meaning?",
-          "I think of a good design system as a set of decisions that allows different screens to do their own jobs while feeling connected. A story about the colors and materials of cities made me reconsider where to look for those decisions.",
-        ] },
-      ],
+      heroImage: {
+        src: "/image/archives/santorini.jpg",
+        alt: "A Santorini cityscape of white buildings and blue domes",
+        caption: "Different forms become one landscape through shared materials and colors.",
+      },
+      sections: [],
     },
   },
 }];
