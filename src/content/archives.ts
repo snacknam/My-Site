@@ -22,33 +22,21 @@ export interface ArchiveEntry {
 
 export const developmentTopics = ["Operating System", "Data Structure & Algorithm", "Development"] as const;
 
-export const developmentCollections = [
+const developmentCollections = [
   {
     topic: "Operating System",
     image: "/image/archives/development-operating-system.jpg",
-    alt: { ko: "Operating System 아카이브 표지", en: "Operating System archive cover" },
-    summary: {
-      ko: "운영체제의 역할부터 커널, 메모리, 파일 시스템과 교착 상태까지 정리합니다.",
-      en: "Notes on operating systems, kernels, memory, file systems, and deadlocks.",
-    },
+    alt: "Operating System 아카이브 표지",
   },
   {
     topic: "Data Structure & Algorithm",
     image: "/image/archives/development-data-structure-algorithm.jpg",
-    alt: { ko: "Data Structure & Algorithm 아카이브 표지", en: "Data Structure & Algorithm archive cover" },
-    summary: {
-      ko: "자료를 구성하고 문제를 해결하는 방법과 알고리즘의 효율을 기록합니다.",
-      en: "Notes on organizing data, solving problems, and reasoning about algorithm efficiency.",
-    },
+    alt: "Data Structure & Algorithm 아카이브 표지",
   },
   {
     topic: "Development",
     image: "/image/archives/development.jpg",
-    alt: { ko: "Development 아카이브 표지", en: "Development archive cover" },
-    summary: {
-      ko: "Swift와 SwiftUI, 동시성, 네트워크를 중심으로 개발하며 배운 내용을 모았습니다.",
-      en: "Development notes focused on Swift, SwiftUI, concurrency, and networking.",
-    },
+    alt: "Development 아카이브 표지",
   },
 ] as const;
 
@@ -104,13 +92,16 @@ function classifyDevelopmentTopic(topic: string): ArchiveEntry["topic"] {
 }
 
 export const archives: ArchiveEntry[] = [...designArchives, ...developmentPosts.map((post): ArchiveEntry => {
+  const topic = classifyDevelopmentTopic(post.topic);
+  const collection = developmentCollections.find((item) => item.topic === topic);
   const copy: ArchiveCopy = {
     title: post.title,
     summary: post.summary,
     tags: [...new Set([post.topic, ...post.tags])],
     introduction: [],
+    heroImage: collection ? { src: collection.image, alt: collection.alt } : undefined,
     sections: [],
     markdown: post.markdown,
   };
-  return { slug: post.slug, date: post.date, category: "development", topic: classifyDevelopmentTopic(post.topic), source: post.source, content: { ko: copy, en: copy } };
+  return { slug: post.slug, date: post.date, category: "development", topic, source: post.source, content: { ko: copy, en: copy } };
 })];
