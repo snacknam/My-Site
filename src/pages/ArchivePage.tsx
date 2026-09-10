@@ -3,6 +3,7 @@ import Markdown from "react-markdown";
 import remarkGfm from "remark-gfm";
 import rehypeRaw from "rehype-raw";
 import rehypeSanitize from "rehype-sanitize";
+import { ArrowUpRightIcon } from "@/components/ui/icons";
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select";
 import { Tabs, TabsList, TabsTrigger } from "@/components/ui/tabs";
 import { archives, archiveLabels } from "../content/archives";
@@ -78,7 +79,7 @@ export function ArchivePage({ locale, slug }: { locale: Locale; slug?: string })
           const copy = entry.content[locale];
           return <li key={entry.slug}><Link className="archive-entry" to={`/${locale}/archives/${entry.slug}`}>
             <div><p className="archive-meta">{copy.tags.join(" · ")}</p><h2>{copy.title}</h2><p className="archive-summary">{copy.summary}</p></div>
-            <span className="archive-arrow" aria-hidden="true">↗</span>
+            <ArrowUpRightIcon className="archive-arrow" />
           </Link></li>;
         })}
       </ul>

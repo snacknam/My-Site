@@ -1,7 +1,8 @@
 import * as React from "react";
 import { Select as SelectPrimitive } from "@base-ui/react/select";
-import { CheckIcon, ChevronDownIcon, ChevronUpIcon } from "lucide-react";
+import { CheckIcon, ChevronUpIcon } from "lucide-react";
 
+import { ChevronDownIcon } from "@/components/ui/icons";
 import { cn } from "@/lib/utils";
 
 function Select<Value>(props: SelectPrimitive.Root.Props<Value>) {
@@ -17,7 +18,7 @@ function SelectTrigger({ className, children, ...props }: React.ComponentProps<t
     <SelectPrimitive.Trigger data-slot="select-trigger" className={cn("ui-select-trigger", className)} {...props}>
       {children}
       <SelectPrimitive.Icon>
-        <ChevronDownIcon aria-hidden="true" />
+        <ChevronDownIcon className="ui-select-chevron" width="14" height="14" />
       </SelectPrimitive.Icon>
     </SelectPrimitive.Trigger>
   );
