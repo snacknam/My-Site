@@ -1,6 +1,6 @@
 import * as React from "react";
 import { Select as SelectPrimitive } from "@base-ui/react/select";
-import { CheckIcon, ChevronUpIcon } from "lucide-react";
+import { CheckIcon } from "lucide-react";
 
 import { ChevronDownIcon } from "@/components/ui/icons";
 import { cn } from "@/lib/utils";
@@ -17,8 +17,8 @@ function SelectTrigger({ className, children, ...props }: React.ComponentProps<t
   return (
     <SelectPrimitive.Trigger data-slot="select-trigger" className={cn("ui-select-trigger", className)} {...props}>
       {children}
-      <SelectPrimitive.Icon>
-        <ChevronDownIcon className="ui-select-chevron" width="14" height="14" />
+      <SelectPrimitive.Icon className="ui-select-icon">
+        <ChevronDownIcon className="ui-select-chevron" />
       </SelectPrimitive.Icon>
     </SelectPrimitive.Trigger>
   );
@@ -55,11 +55,11 @@ function SelectContent({
           {...props}
         >
           <SelectPrimitive.ScrollUpArrow className="ui-select-scroll-button">
-            <ChevronUpIcon aria-hidden="true" />
+            <ChevronDownIcon className="ui-select-scroll-icon ui-select-scroll-icon-up" />
           </SelectPrimitive.ScrollUpArrow>
           <SelectPrimitive.List className="ui-select-viewport">{children}</SelectPrimitive.List>
           <SelectPrimitive.ScrollDownArrow className="ui-select-scroll-button">
-            <ChevronDownIcon aria-hidden="true" />
+            <ChevronDownIcon className="ui-select-scroll-icon" />
           </SelectPrimitive.ScrollDownArrow>
         </SelectPrimitive.Popup>
       </SelectPrimitive.Positioner>
