@@ -6,7 +6,7 @@ import rehypeSanitize from "rehype-sanitize";
 import { ArrowUpRightIcon } from "@/components/ui/icons";
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select";
 import { Tabs, TabsList, TabsTrigger } from "@/components/ui/tabs";
-import { archives, archiveLabels } from "../content/archives";
+import { archives, archiveLabels, developmentCollections, developmentTopics } from "../content/archives";
 import { SiteLayout } from "../layouts/SiteLayout";
 import type { Locale } from "../types/content";
 import { NotFoundPage } from "./NotFoundPage";
@@ -17,7 +17,7 @@ export function ArchivePage({ locale, slug }: { locale: Locale; slug?: string })
   const requestedCategory = searchParams.get("category");
   const category = requestedCategory === "design" || requestedCategory === "development" ? requestedCategory : "all";
   const topic = searchParams.get("topic") ?? "";
-  const topics = [...new Set(archives.flatMap((entry) => entry.topic ? [entry.topic] : []))].sort();
+  const topics = developmentTopics.filter((value) => archives.some((entry) => entry.topic === value));
   const topicItems = [
     { value: "all", label: labels.allTopics },
     ...topics.map((value) => ({ value, label: `${value} (${archives.filter((entry) => entry.topic === value).length})` })),
@@ -74,16 +74,33 @@ export function ArchivePage({ locale, slug }: { locale: Locale; slug?: string })
           </Select>
         )}
       </div>
-      <ul className="archive-list">
-        {[...filtered].sort((a, b) => b.date.localeCompare(a.date)).map((entry) => {
-          const copy = entry.content[locale];
-          return <li key={entry.slug}><Link className="archive-entry" to={`/${locale}/archives/${entry.slug}`}>
-            <div><p className="archive-meta">{copy.tags.join(" · ")}</p><h2>{copy.title}</h2><p className="archive-summary">{copy.summary}</p></div>
-            <ArrowUpRightIcon className="archive-arrow" />
-          </Link></li>;
-        })}
-      </ul>
-      {filtered.length === 0 && <p>{labels.empty}</p>}
+      {category === "development" && !topic ? (
+        <ul className="archive-collections">
+          {developmentCollections.map((collection) => {
+            const count = archives.filter((entry) => entry.topic === collection.topic).length;
+            return <li key={collection.topic}>
+              <Link className="archive-collection" to={`/${locale}/archives?category=development&topic=${encodeURIComponent(collection.topic)}`}>
+                <div className="archive-collection-image"><img src={collection.image} alt={collection.alt[locale]} loading="lazy" decoding="async" /></div>
+                <div className="archive-collection-copy">
+                  <p>{collection.topic} · {count}</p>
+                  <span>{collection.summary[locale]}</span>
+                </div>
+              </Link>
+            </li>;
+          })}
+        </ul>
+      ) : (
+        <ul className="archive-list">
+          {[...filtered].sort((a, b) => b.date.localeCompare(a.date)).map((entry) => {
+            const copy = entry.content[locale];
+            return <li key={entry.slug}><Link className="archive-entry" to={`/${locale}/archives/${entry.slug}`}>
+              <div><p className="archive-meta">{copy.tags.join(" · ")}</p><h2>{copy.title}</h2><p className="archive-summary">{copy.summary}</p></div>
+              <ArrowUpRightIcon className="archive-arrow" />
+            </Link></li>;
+          })}
+        </ul>
+      )}
+      {filtered.length === 0 && <p className="empty-state">{labels.empty}</p>}
     </SiteLayout>
   );
 }

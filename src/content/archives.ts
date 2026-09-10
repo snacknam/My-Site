@@ -20,6 +20,38 @@ export interface ArchiveEntry {
   content: Record<Locale, ArchiveCopy>;
 }
 
+export const developmentTopics = ["Operating System", "Data Structure & Algorithm", "Development"] as const;
+
+export const developmentCollections = [
+  {
+    topic: "Operating System",
+    image: "/image/archives/development-operating-system.jpg",
+    alt: { ko: "Operating System 아카이브 표지", en: "Operating System archive cover" },
+    summary: {
+      ko: "운영체제의 역할부터 커널, 메모리, 파일 시스템과 교착 상태까지 정리합니다.",
+      en: "Notes on operating systems, kernels, memory, file systems, and deadlocks.",
+    },
+  },
+  {
+    topic: "Data Structure & Algorithm",
+    image: "/image/archives/development-data-structure-algorithm.jpg",
+    alt: { ko: "Data Structure & Algorithm 아카이브 표지", en: "Data Structure & Algorithm archive cover" },
+    summary: {
+      ko: "자료를 구성하고 문제를 해결하는 방법과 알고리즘의 효율을 기록합니다.",
+      en: "Notes on organizing data, solving problems, and reasoning about algorithm efficiency.",
+    },
+  },
+  {
+    topic: "Development",
+    image: "/image/archives/development.jpg",
+    alt: { ko: "Development 아카이브 표지", en: "Development archive cover" },
+    summary: {
+      ko: "Swift와 SwiftUI, 동시성, 네트워크를 중심으로 개발하며 배운 내용을 모았습니다.",
+      en: "Development notes focused on Swift, SwiftUI, concurrency, and networking.",
+    },
+  },
+] as const;
+
 export const archiveLabels = {
   ko: { title: "아카이브", description: "디자인에 대한 생각과 개발하며 배운 것들을 기록합니다.", back: "아카이브로 돌아가기", all: "전체", design: "디자인", development: "개발", topic: "개발 주제", allTopics: "모든 주제", source: "Velog 원문 보기", original: "한국어 원문", empty: "해당하는 글이 없습니다." },
   en: { title: "Archive", description: "Reflections on design and notes from learning to code.", back: "Back to archive", all: "All", design: "Design", development: "Development", topic: "Development topic", allTopics: "All topics", source: "Read original on Velog", original: "Original article in Korean", empty: "No articles in this category." },
@@ -65,6 +97,12 @@ const designArchives: ArchiveEntry[] = [{
   },
 }];
 
+function classifyDevelopmentTopic(topic: string): ArchiveEntry["topic"] {
+  if (topic === "OS") return "Operating System";
+  if (topic === "Algorithm") return "Data Structure & Algorithm";
+  return "Development";
+}
+
 export const archives: ArchiveEntry[] = [...designArchives, ...developmentPosts.map((post): ArchiveEntry => {
   const copy: ArchiveCopy = {
     title: post.title,
@@ -74,5 +112,5 @@ export const archives: ArchiveEntry[] = [...designArchives, ...developmentPosts.
     sections: [],
     markdown: post.markdown,
   };
-  return { slug: post.slug, date: post.date, category: "development", topic: post.topic, source: post.source, content: { ko: copy, en: copy } };
+  return { slug: post.slug, date: post.date, category: "development", topic: classifyDevelopmentTopic(post.topic), source: post.source, content: { ko: copy, en: copy } };
 })];
