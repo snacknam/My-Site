@@ -131,7 +131,7 @@ img { display: block; max-width: 100%; }
 .archive-list li:last-child { border-bottom: 1px solid #e5e5e5; }
 .archive-entry h2 { margin: 10px 0 12px; font-size: var(--type-display); font-weight: 400; line-height: 1.5; word-break: keep-all; overflow-wrap: anywhere; }
 .archive-meta { color: var(--color-text-secondary); font-size: var(--type-body); line-height: 1.6; }
-.archive-summary { color: var(--color-text-secondary); font-size: var(--type-body); font-weight: 400; line-height: 1.7; word-break: keep-all; overflow-wrap: anywhere; }
+.archive-summary { color: var(--color-text-secondary); font-size: var(--type-body); font-weight: 300; line-height: 1.7; word-break: keep-all; overflow-wrap: anywhere; }
 .archive-arrow { display: block; width: var(--icon-size); height: var(--icon-size); margin-top: 1px; justify-self: center; color: currentColor; }
 .archive-article { width: 100%; margin: 24px 0 80px; }
 .archive-back { font-size: var(--type-body); color: var(--color-text-secondary); }

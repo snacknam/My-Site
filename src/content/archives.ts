@@ -21,6 +21,7 @@ export interface ArchiveEntry {
 }
 
 export const developmentTopics = ["Operating System", "Data Structure & Algorithm", "Development"] as const;
+type DevelopmentTopic = (typeof developmentTopics)[number];
 
 const developmentCollections = [
   {
@@ -85,10 +86,18 @@ const designArchives: ArchiveEntry[] = [{
   },
 }];
 
-function classifyDevelopmentTopic(topic: string): ArchiveEntry["topic"] {
+function classifyDevelopmentTopic(topic: string): DevelopmentTopic {
   if (topic === "OS") return "Operating System";
   if (topic === "Algorithm") return "Data Structure & Algorithm";
   return "Development";
+}
+
+function getDevelopmentTags(post: (typeof developmentPosts)[number], topic: DevelopmentTopic): string[] {
+  if (topic !== "Development") return [topic];
+  if (post.topic !== "TIL") return [topic, post.topic];
+  if (post.slug === "dev-20221018") return [topic, "Git"];
+  if (post.slug === "dev-til20221017") return [topic, "Computer Science"];
+  return [topic, "Swift"];
 }
 
 export const archives: ArchiveEntry[] = [...designArchives, ...developmentPosts.map((post): ArchiveEntry => {
@@ -97,7 +106,7 @@ export const archives: ArchiveEntry[] = [...designArchives, ...developmentPosts.
   const copy: ArchiveCopy = {
     title: post.title,
     summary: post.summary,
-    tags: [...new Set([post.topic, ...post.tags])],
+    tags: getDevelopmentTags(post, topic),
     introduction: [],
     heroImage: collection ? { src: collection.image, alt: collection.alt } : undefined,
     sections: [],

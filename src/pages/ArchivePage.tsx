@@ -1,3 +1,4 @@
+import { useEffect } from "react";
 import { Link, useSearchParams } from "react-router-dom";
 import Markdown from "react-markdown";
 import remarkGfm from "remark-gfm";
@@ -23,6 +24,9 @@ export function ArchivePage({ locale, slug }: { locale: Locale; slug?: string })
     ...topics.map((value) => ({ value, label: `${value} (${archives.filter((entry) => entry.topic === value).length})` })),
   ];
   const filtered = archives.filter((entry) => (category === "all" || entry.category === category) && (category !== "development" || !topic || entry.topic === topic));
+  useEffect(() => {
+    if (slug) window.scrollTo({ top: 0, left: 0, behavior: "auto" });
+  }, [slug]);
   if (slug) {
     const entry = archives.find((item) => item.slug === slug);
     if (!entry) return <NotFoundPage locale={locale} />;
