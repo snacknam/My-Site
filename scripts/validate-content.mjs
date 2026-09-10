@@ -24,7 +24,8 @@ for (const post of development) {
   }
 }
 const assetPattern = /["'](\/image\/[^"']+|\/CV\.pdf)["']/g;
-const legacyFiles = ["about.html", "ada.html", "exemble.html", "exemui.html", "koin.html", "orbro.html", "safetybell.html", "together.html"];
+const legacyFiles = ["about", "ada", "exemble", "exemui", "koin", "orbro", "safetybell", "together"]
+  .map((name) => `src/content/legacy/${name}.html`);
 
 for (const sourceFile of sourceFiles) {
   const absoluteSource = resolve(root, sourceFile);
@@ -54,7 +55,7 @@ for (const legacyFile of legacyFiles) {
 }
 
 for (const font of ["Light", "Regular", "SemiBold"]) {
-  const fontPath = `Pretendard/web/static/woff2/Pretendard-${font}.woff2`;
+  const fontPath = `public/fonts/Pretendard-${font}.woff2`;
   if (!existsSync(resolve(root, fontPath))) errors.push(`Missing font: ${fontPath}`);
 }
 
@@ -63,4 +64,4 @@ if (errors.length) {
   process.exit(1);
 }
 
-console.log(`Validated bilingual content, ${legacyFiles.length} original Korean pages, fonts, and referenced assets.`);
+console.log(`Validated bilingual content, ${legacyFiles.length} Korean content fragments, fonts, and referenced assets.`);

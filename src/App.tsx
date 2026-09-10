@@ -1,4 +1,5 @@
-import { Navigate, Route, Routes, useParams } from "react-router-dom";
+import { useEffect } from "react";
+import { Navigate, Route, Routes, useLocation, useParams } from "react-router-dom";
 import { defaultLocale, isLocale } from "./i18n/locales";
 import { HomePage } from "./pages/HomePage";
 import { NotFoundPage } from "./pages/NotFoundPage";
@@ -8,6 +9,25 @@ import { PhotographyPage } from "./pages/PhotographyPage";
 import { PhotoPage } from "./pages/PhotoPage";
 import { ArchivePage } from "./pages/ArchivePage";
 import { LegacyKoreanAboutPage, LegacyKoreanProjectPage } from "./pages/LegacyKoreanPage";
+
+function ScrollToTop() {
+  const { pathname } = useLocation();
+
+  useEffect(() => {
+    const previousScrollRestoration = window.history.scrollRestoration;
+    window.history.scrollRestoration = "manual";
+    return () => {
+      window.history.scrollRestoration = previousScrollRestoration;
+    };
+  }, []);
+
+  useEffect(() => {
+    document.getElementById("main-content")?.focus({ preventScroll: true });
+    window.scrollTo({ top: 0, left: 0, behavior: "auto" });
+  }, [pathname]);
+
+  return null;
+}
 
 function LocalizedHomeRoute() {
   const { locale } = useParams();
@@ -57,19 +77,22 @@ function LocalizedArchiveRoute() {
 
 export function App() {
   return (
-    <Routes>
-      <Route path="/" element={<Navigate to={`/${defaultLocale}`} replace />} />
-      <Route path="/:locale" element={<LocalizedHomeRoute />} />
-      <Route path="/:locale/projects/:slug" element={<LocalizedProjectRoute />} />
-      <Route path="/:locale/about" element={<LocalizedAboutRoute />} />
-      <Route path="/:locale/archives" element={<LocalizedArchiveRoute />} />
-      <Route path="/:locale/archives/:slug" element={<LocalizedArchiveRoute />} />
-      <Route path="/:locale/photography" element={<LocalizedPhotographyRoute />} />
-      <Route path="/:locale/photography/recents" element={<LocalizedPhotographyRoute recent />} />
-      <Route path="/:locale/photography/albums/:albumSlug" element={<LocalizedPhotographyRoute />} />
-      <Route path="/:locale/photography/:slug" element={<LocalizedPhotoRoute />} />
-      <Route path="/:locale/*" element={<LocalizedNotFoundRoute />} />
-      <Route path="*" element={<NotFoundPage />} />
-    </Routes>
+    <>
+      <ScrollToTop />
+      <Routes>
+        <Route path="/" element={<Navigate to={`/${defaultLocale}`} replace />} />
+        <Route path="/:locale" element={<LocalizedHomeRoute />} />
+        <Route path="/:locale/projects/:slug" element={<LocalizedProjectRoute />} />
+        <Route path="/:locale/about" element={<LocalizedAboutRoute />} />
+        <Route path="/:locale/archives" element={<LocalizedArchiveRoute />} />
+        <Route path="/:locale/archives/:slug" element={<LocalizedArchiveRoute />} />
+        <Route path="/:locale/photography" element={<LocalizedPhotographyRoute />} />
+        <Route path="/:locale/photography/recents" element={<LocalizedPhotographyRoute recent />} />
+        <Route path="/:locale/photography/albums/:albumSlug" element={<LocalizedPhotographyRoute />} />
+        <Route path="/:locale/photography/:slug" element={<LocalizedPhotoRoute />} />
+        <Route path="/:locale/*" element={<LocalizedNotFoundRoute />} />
+        <Route path="*" element={<NotFoundPage />} />
+      </Routes>
+    </>
   );
 }

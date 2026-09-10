@@ -22,13 +22,13 @@ export function SiteLayout({ children, locale, pageTitle }: SiteLayoutProps) {
     <div className="site-shell">
       <a className="skip-link" href="#main-content">{text.skipToContent}</a>
       <SiteNavigation locale={locale} />
-      <main id="main-content">{children}</main>
+      <main id="main-content" tabIndex={-1}>{children}</main>
       <footer className="site-footer">
         <p>ⓒ Kwansik Nam 2026</p>
         <nav className="menu" aria-label={text.footerNavigationLabel}>
           <Link to={`/${locale}`}>{text.navigation.projects}</Link>
-          <Link to={`/${locale}/photography`}>{text.navigation.photography}</Link>
           <Link to={`/${locale}/archives`}>{text.navigation.archives}</Link>
+          <Link to={`/${locale}/photography`}>{text.navigation.photography}</Link>
           <Link to={`/${locale}/about`}>{text.navigation.about}</Link>
         </nav>
       </footer>

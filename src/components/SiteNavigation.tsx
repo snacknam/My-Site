@@ -20,8 +20,8 @@ export function SiteNavigation({ locale }: SiteNavigationProps) {
       </Link>
       <nav className="menu" aria-label={text.primaryNavigationLabel}>
         <Link to={`/${locale}`}>{text.navigation.projects}</Link>
+        <Link to={`/${locale}/archives`}>{text.navigation.archives}</Link>
         <Link to={`/${locale}/photography`}>{text.navigation.photography}</Link>
-          <Link to={`/${locale}/archives`}>{text.navigation.archives}</Link>
         <Link to={`/${locale}/about`}>{text.navigation.about}</Link>
         <Link to={languagePath} aria-label={text.languageLabel} className="language-switch" lang={otherLocale}>
           <svg width="20" height="20" viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true" focusable="false">

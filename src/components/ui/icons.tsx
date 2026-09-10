@@ -1,13 +1,5 @@
 import type { SVGProps } from "react";
 
-function ArrowUpRightIcon(props: SVGProps<SVGSVGElement>) {
-  return (
-    <svg viewBox="0 0 24 24" fill="none" aria-hidden="true" focusable="false" {...props}>
-      <path d="M18.0039 16.8994H16.0039V9.41309L6.70703 18.707L5.29297 17.293L14.5889 8H7.10449V6H17.0039C17.5561 6.00014 18.0039 6.4478 18.0039 7V16.8994Z" fill="currentColor" />
-    </svg>
-  );
-}
-
 function ChevronDownIcon(props: SVGProps<SVGSVGElement>) {
   return (
     <svg viewBox="0 0 24 24" fill="none" aria-hidden="true" focusable="false" {...props}>
@@ -16,4 +8,4 @@ function ChevronDownIcon(props: SVGProps<SVGSVGElement>) {
   );
 }
 
-export { ArrowUpRightIcon, ChevronDownIcon };
+export { ChevronDownIcon };
