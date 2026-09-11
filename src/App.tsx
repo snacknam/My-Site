@@ -1,5 +1,5 @@
-import { useEffect } from "react";
-import { Navigate, Route, Routes, useLocation, useParams } from "react-router-dom";
+import { useEffect, useRef } from "react";
+import { Navigate, Route, Routes, useLocation, useNavigationType, useParams } from "react-router-dom";
 import { defaultLocale, isLocale } from "./i18n/locales";
 import { HomePage } from "./pages/HomePage";
 import { NotFoundPage } from "./pages/NotFoundPage";
@@ -10,8 +10,20 @@ import { PhotoPage } from "./pages/PhotoPage";
 import { ArchivePage } from "./pages/ArchivePage";
 import { LegacyKoreanAboutPage, LegacyKoreanProjectPage } from "./pages/LegacyKoreanPage";
 
-function ScrollToTop() {
-  const { pathname } = useLocation();
+interface ScrollPosition {
+  left: number;
+  top: number;
+}
+
+interface ScrollHistoryState extends Record<string, unknown> {
+  key?: string;
+  scrollPosition?: ScrollPosition;
+}
+
+function ScrollRestoration() {
+  const location = useLocation();
+  const navigationType = useNavigationType();
+  const previousPathname = useRef<string | null>(null);
 
   useEffect(() => {
     const previousScrollRestoration = window.history.scrollRestoration;
@@ -22,9 +34,51 @@ function ScrollToTop() {
   }, []);
 
   useEffect(() => {
-    document.getElementById("main-content")?.focus({ preventScroll: true });
-    window.scrollTo({ top: 0, left: 0, behavior: "auto" });
-  }, [pathname]);
+    const savePosition = () => {
+      const historyState = (window.history.state ?? {}) as ScrollHistoryState;
+      if (historyState.key && historyState.key !== location.key) return;
+      window.history.replaceState({
+        ...historyState,
+        scrollPosition: { left: window.scrollX, top: window.scrollY },
+      }, "");
+    };
+
+    window.addEventListener("scroll", savePosition, { passive: true });
+    document.addEventListener("click", savePosition, true);
+    return () => {
+      window.removeEventListener("scroll", savePosition);
+      document.removeEventListener("click", savePosition, true);
+    };
+  }, [location.key]);
+
+  useEffect(() => {
+    const pathnameChanged = previousPathname.current === null || previousPathname.current !== location.pathname;
+    previousPathname.current = location.pathname;
+    if (!pathnameChanged) return;
+
+    const historyState = (window.history.state ?? {}) as ScrollHistoryState;
+    const savedPosition = navigationType === "POP" ? historyState.scrollPosition : undefined;
+    const position = savedPosition ?? { left: 0, top: 0 };
+    const restorePosition = () => window.scrollTo({ ...position, behavior: "auto" });
+
+    if (!savedPosition) document.getElementById("main-content")?.focus({ preventScroll: true });
+    restorePosition();
+
+    const frame = window.requestAnimationFrame(restorePosition);
+    const pendingImages = [...document.images].filter((image) => !image.complete);
+    pendingImages.forEach((image) => {
+      image.addEventListener("load", restorePosition);
+      image.addEventListener("error", restorePosition);
+    });
+
+    return () => {
+      window.cancelAnimationFrame(frame);
+      pendingImages.forEach((image) => {
+        image.removeEventListener("load", restorePosition);
+        image.removeEventListener("error", restorePosition);
+      });
+    };
+  }, [location.key, location.pathname, navigationType]);
 
   return null;
 }
@@ -78,7 +132,7 @@ function LocalizedArchiveRoute() {
 export function App() {
   return (
     <>
-      <ScrollToTop />
+      <ScrollRestoration />
       <Routes>
         <Route path="/" element={<Navigate to={`/${defaultLocale}`} replace />} />
         <Route path="/:locale" element={<LocalizedHomeRoute />} />

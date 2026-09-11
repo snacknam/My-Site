@@ -94,10 +94,7 @@ function classifyDevelopmentTopic(topic: string): DevelopmentTopic {
 
 function getDevelopmentTags(post: (typeof developmentPosts)[number], topic: DevelopmentTopic): string[] {
   if (topic !== "Development") return [topic];
-  if (post.topic !== "TIL") return [topic, post.topic];
-  if (post.slug === "dev-20221018") return [topic, "Git"];
-  if (post.slug === "dev-til20221017") return [topic, "Computer Science"];
-  return [topic, "Swift"];
+  return [topic, post.topic];
 }
 
 export const archives: ArchiveEntry[] = [...designArchives, ...developmentPosts.map((post): ArchiveEntry => {

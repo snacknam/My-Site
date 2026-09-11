@@ -59,6 +59,11 @@ for (const font of ["Light", "Regular", "SemiBold"]) {
   if (!existsSync(resolve(root, fontPath))) errors.push(`Missing font: ${fontPath}`);
 }
 
+for (const clockIcon of ["sun", "moon"]) {
+  const iconPath = `image/main/${clockIcon}.svg`;
+  if (!existsSync(resolve(root, iconPath))) errors.push(`Missing Seoul clock icon: ${iconPath}`);
+}
+
 if (errors.length) {
   console.error(errors.join("\n"));
   process.exit(1);
