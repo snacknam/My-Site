@@ -52,7 +52,8 @@ function ScrollRestoration() {
   }, [location.key]);
 
   useEffect(() => {
-    const pathnameChanged = previousPathname.current === null || previousPathname.current !== location.pathname;
+    const isInitialRender = previousPathname.current === null;
+    const pathnameChanged = isInitialRender || previousPathname.current !== location.pathname;
     previousPathname.current = location.pathname;
     if (!pathnameChanged) return;
 
@@ -61,22 +62,15 @@ function ScrollRestoration() {
     const position = savedPosition ?? { left: 0, top: 0 };
     const restorePosition = () => window.scrollTo({ ...position, behavior: "auto" });
 
-    if (!savedPosition) document.getElementById("main-content")?.focus({ preventScroll: true });
+    if (!isInitialRender && !savedPosition) {
+      document.getElementById("main-content")?.focus({ preventScroll: true });
+    }
     restorePosition();
 
     const frame = window.requestAnimationFrame(restorePosition);
-    const pendingImages = [...document.images].filter((image) => !image.complete);
-    pendingImages.forEach((image) => {
-      image.addEventListener("load", restorePosition);
-      image.addEventListener("error", restorePosition);
-    });
 
     return () => {
       window.cancelAnimationFrame(frame);
-      pendingImages.forEach((image) => {
-        image.removeEventListener("load", restorePosition);
-        image.removeEventListener("error", restorePosition);
-      });
     };
   }, [location.key, location.pathname, navigationType]);
 
