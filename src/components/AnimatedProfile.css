@@ -1,12 +1,12 @@
 .animated-profile { display: block; width: 40px; height: 40px; }
-.animated-profile svg { display: block; width: 100%; height: 100%; overflow: visible; transform: translateX(-2px); }
+.animated-profile svg { display: block; width: 100%; height: 100%; overflow: visible; }
 .animated-profile .profile-head {
   transform-origin: 200px 285px;
   transform: rotate(var(--profile-tilt, 0deg));
   transition: transform .3s ease-out;
 }
 .animated-profile .profile-features {
-  transform: translate(var(--profile-x, 0px), var(--profile-y, 0px));
+  transform: translate(calc(var(--profile-x, 0px) - 10px), var(--profile-y, 0px));
   transition: transform .2s ease-out;
 }
 .animated-profile .profile-eye {
@@ -26,15 +26,16 @@
 .profile-home:focus-visible .profile-head {
   transform: rotate(-9deg) translateY(-5px);
 }
-.profile-home:focus-visible .profile-features { transform: none; }
+.profile-home:focus-visible .profile-features { transform: translateX(-10px); }
 .profile-home:focus-visible .profile-eye { animation: none; }
 .profile-home:focus-visible .profile-mouth { transform: scaleX(1.08) rotate(-5deg); }
 @media (hover: hover) {
   .profile-home:hover .profile-head { transform: rotate(-9deg) translateY(-5px); }
-  .profile-home:hover .profile-features { transform: none; }
+  .profile-home:hover .profile-features { transform: translateX(-10px); }
   .profile-home:hover .profile-eye { animation: none; }
   .profile-home:hover .profile-mouth { transform: scaleX(1.08) rotate(-5deg); }
 }
+/* 10 SVG units equal 1px at the 40px display size. */
 @media (prefers-reduced-motion: reduce) {
   .animated-profile .profile-head,
   .animated-profile .profile-features,
@@ -44,4 +45,5 @@
     transition: none !important;
     transform: none !important;
   }
+  .animated-profile .profile-features { transform: translateX(-10px) !important; }
 }
