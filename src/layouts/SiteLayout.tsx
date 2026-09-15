@@ -26,7 +26,6 @@ export function SiteLayout({ children, locale, pageTitle }: SiteLayoutProps) {
       <footer className="site-footer">
         <p>ⓒ Kwansik Nam 2026</p>
         <nav className="menu" aria-label={text.footerNavigationLabel}>
-          <Link to={`/${locale}`}>{text.navigation.projects}</Link>
           <Link to={`/${locale}/archives`}>{text.navigation.archives}</Link>
           <Link to={`/${locale}/photography`}>{text.navigation.photography}</Link>
           <Link to={`/${locale}/about`}>{text.navigation.about}</Link>

@@ -20,7 +20,6 @@ export function SiteNavigation({ locale }: SiteNavigationProps) {
         <AnimatedProfile />
       </Link>
       <nav className="menu" aria-label={text.primaryNavigationLabel}>
-        <Link to={`/${locale}`}>{text.navigation.projects}</Link>
         <Link to={`/${locale}/archives`}>{text.navigation.archives}</Link>
         <Link to={`/${locale}/photography`}>{text.navigation.photography}</Link>
         <Link to={`/${locale}/about`}>{text.navigation.about}</Link>
