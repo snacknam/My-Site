@@ -1,4 +1,5 @@
 import { Link, useLocation } from "react-router-dom";
+import { AnimatedProfile } from "./AnimatedProfile";
 import { ui } from "../content/ui";
 import { getLocalizedPath } from "../i18n/locales";
 import type { Locale } from "../types/content";
@@ -15,8 +16,8 @@ export function SiteNavigation({ locale }: SiteNavigationProps) {
 
   return (
     <header className="site-navigation">
-      <Link to={`/${locale}`} aria-label={text.navigation.projects}>
-        <img src="/image/main/profile.svg" width="40" height="40" alt="Kwansik Nam" />
+      <Link className="profile-home" to={`/${locale}`} aria-label={text.navigation.projects}>
+        <AnimatedProfile />
       </Link>
       <nav className="menu" aria-label={text.primaryNavigationLabel}>
         <Link to={`/${locale}`}>{text.navigation.projects}</Link>
