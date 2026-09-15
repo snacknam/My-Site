@@ -15,10 +15,13 @@
   animation: profile-blink 5.6s infinite;
 }
 .animated-profile .profile-mouth {
-  /* Anchor the smile near its bottom as the corners lift and widen slightly. */
   transform-origin: 232px 302px;
   transform: translateX(5px) scaleX(.85);
   transition: transform .3s ease-out;
+}
+.animated-profile .profile-mouth path {
+  /* Reshape the smile instead of scaling its stroke. */
+  transition: d .3s ease-out;
 }
 @keyframes profile-blink {
   0%, 40%, 44%, 100% { transform: scaleY(1); }
@@ -29,12 +32,16 @@
 }
 .profile-home:focus-visible .profile-features { transform: translate(-10px, 10px); }
 .profile-home:focus-visible .profile-eye { animation: none; }
-.profile-home:focus-visible .profile-mouth { transform: translateX(5px) scale(.89, 1.2); }
+.profile-home:focus-visible .profile-mouth path {
+  d: path("M194.118 288.392C194.118 288.392 234 317.333 268.167 288.392");
+}
 @media (hover: hover) {
   .profile-home:hover .profile-head { transform: rotate(-9deg) translateY(-5px); }
   .profile-home:hover .profile-features { transform: translate(-10px, 10px); }
   .profile-home:hover .profile-eye { animation: none; }
-  .profile-home:hover .profile-mouth { transform: translateX(5px) scale(.89, 1.2); }
+  .profile-home:hover .profile-mouth path {
+    d: path("M194.118 288.392C194.118 288.392 234 317.333 268.167 288.392");
+  }
 }
 /* 10 SVG units equal 1px at the 40px display size. */
 @media (prefers-reduced-motion: reduce) {
@@ -48,4 +55,8 @@
   }
   .animated-profile .profile-features { transform: translate(-10px, 10px) !important; }
   .animated-profile .profile-mouth { transform: translateX(5px) !important; }
+  .animated-profile .profile-mouth path {
+    d: path("M197.618 290.392C197.618 290.392 234 315.333 264.667 290.392") !important;
+    transition: none !important;
+  }
 }
