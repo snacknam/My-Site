@@ -15,7 +15,8 @@
   animation: profile-blink 5.6s infinite;
 }
 .animated-profile .profile-mouth {
-  transform-origin: 232px 295px;
+  /* Anchor the smile near its bottom so only the corners lift on hover. */
+  transform-origin: 232px 302px;
   transform: translateX(5px) scaleX(.85);
   transition: transform .3s ease-out;
 }
@@ -28,12 +29,12 @@
 }
 .profile-home:focus-visible .profile-features { transform: translate(-10px, 10px); }
 .profile-home:focus-visible .profile-eye { animation: none; }
-.profile-home:focus-visible .profile-mouth { transform: translateX(5px) scaleX(1.08) rotate(-5deg); }
+.profile-home:focus-visible .profile-mouth { transform: translateX(5px) scale(.85, 1.2); }
 @media (hover: hover) {
   .profile-home:hover .profile-head { transform: rotate(-9deg) translateY(-5px); }
   .profile-home:hover .profile-features { transform: translate(-10px, 10px); }
   .profile-home:hover .profile-eye { animation: none; }
-  .profile-home:hover .profile-mouth { transform: translateX(5px) scaleX(1.08) rotate(-5deg); }
+  .profile-home:hover .profile-mouth { transform: translateX(5px) scale(.85, 1.2); }
 }
 /* 10 SVG units equal 1px at the 40px display size. */
 @media (prefers-reduced-motion: reduce) {
