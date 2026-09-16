@@ -55,7 +55,7 @@ export const exemUiProject = makeProject({
   slug: "exemui",
   name: "Exem UI",
   koHeadline: "디자인 라이브러리로 사내 제품 통합하기",
-  enHeadline: "Bringing products together with a shared design library",
+  enHeadline: "Unifying products with a design library",
   koMetadata: "디자인·개발 통합 라이브러리 Exem UI · 2025.05–2026.02",
   enMetadata: "Shared library for design and code · May 2025–Feb 2026",
   koIntroduction: "서로 다른 방식으로 만들어진 사내 제품을 하나의 경험으로 통합하기 위해 디자인과 개발이 같은 구조를 공유하는 라이브러리를 구축했습니다.",

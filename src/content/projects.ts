@@ -18,7 +18,7 @@ export const projects: Project[] = [
     hasReactDetail: true,
     content: {
       ko: { title: "디자인 라이브러리로 사내 제품 통합하기", description: "디자인 · 개발 통합 라이브러리 Exem UI" },
-      en: { title: "Bringing products together with a shared design library", description: "Exem UI · A shared library for design and code" },
+      en: { title: "Unifying products with a design library", description: "Exem UI · A shared library for design and code" },
     },
     media: {
       ko: { image: "/image/main/exemui.jpg", alt: "Exem UI 프로젝트 표지" },

@@ -73,9 +73,6 @@ img { display: block; max-width: 100%; }
 .project-text { display: flex; flex-direction: column; gap: var(--space-1); margin: var(--space-3) 0 var(--space-5); }
 .project-text h2 { font-size: var(--type-subtitle); font-weight: 400; }
 .project-text p { color: var(--color-text-secondary); font-size: var(--type-body); font-weight: 300; line-height: 1.6; }
-/* Keep short English headings balanced instead of stranding the final word. */
-:lang(en) :is(.hero h1, .project-text h2, .project-detail-copy h1, .project-detail-copy h2) { text-wrap: balance; }
-:lang(en) .project-text p { text-wrap: pretty; }
 .site-footer p { font-size: var(--type-caption); font-weight: 400; }
 .not-found { min-height: 440px; display: flex; flex-direction: column; align-items: flex-start; justify-content: center; gap: var(--space-3); }
 .not-found h1 { font-size: var(--type-display); font-weight: 500; }
