@@ -24,7 +24,7 @@ export const photoAlbums: PhotoAlbum[] = [];
 
 export const photographyLabels = {
   ko: { recent: "최근 사진", back: "사진 목록으로", next: "다음 앨범", empty: "아직 공개한 사진이 없습니다.", count: "장의 사진" },
-  en: { recent: "Recents", back: "Back to photography", next: "Next album", empty: "No photographs published yet.", count: " photographs" },
+  en: { recent: "Recent photos", back: "Back to photography", next: "Next album", empty: "No photos to share just yet.", count: " photographs" },
 };
 
 export function getAlbumPhotos(albumSlug?: string) {
@@ -42,7 +42,7 @@ export const photographs: Photograph[] = [
     "height": 2400,
     "location": {
       "ko": "여름 해변",
-      "en": "Summer beach"
+      "en": "Summer at the beach"
     },
     "alt": {
       "ko": "모래사장에 줄지어 놓인 접힌 파라솔과 푸른 바다",
@@ -205,7 +205,7 @@ export const photographs: Photograph[] = [
     },
     "alt": {
       "ko": "위에서 내려다본 횡단보도를 걷는 사람",
-      "en": "A person crossing a zebra crossing viewed from above"
+      "en": "An overhead view of a person walking across a crosswalk"
     },
     "capturedAt": "2025-10-08"
   },
@@ -265,7 +265,7 @@ export const photographs: Photograph[] = [
     "height": 1600,
     "location": {
       "ko": "흐르는 초록",
-      "en": "Flowing green"
+      "en": "Green in motion"
     },
     "alt": {
       "ko": "어둠 속 가로로 번진 초록빛 궤적",
@@ -361,7 +361,7 @@ export const photographs: Photograph[] = [
     "height": 2400,
     "location": {
       "ko": "도시의 흐름",
-      "en": "Flow of the city"
+      "en": "City in motion"
     },
     "alt": {
       "ko": "밤의 도로 위로 길게 이어진 차량 불빛",

@@ -43,7 +43,7 @@ const developmentCollections = [
 
 export const archiveLabels = {
   ko: { title: "아카이브", description: "디자인에 대한 생각과 개발하며 배운 것들을 기록합니다.", back: "아카이브로 돌아가기", all: "전체", design: "디자인", development: "개발", topic: "개발 주제", allTopics: "모든 주제", source: "Velog 원문 보기", original: "한국어 원문", empty: "해당하는 글이 없습니다." },
-  en: { title: "Archive", description: "Reflections on design and notes from learning to code.", back: "Back to archive", all: "All", design: "Design", development: "Development", topic: "Development topic", allTopics: "All topics", source: "Read original on Velog", original: "Original article in Korean", empty: "No articles in this category." },
+  en: { title: "Archive", description: "Thoughts on design and things I’ve learned through code.", back: "Back to archive", all: "All", design: "Design", development: "Development", topic: "Development topic", allTopics: "All topics", source: "Read the original on Velog", original: "Original article in Korean", empty: "No articles in this category." },
 };
 
 const designArchives: ArchiveEntry[] = [{
@@ -68,18 +68,18 @@ const designArchives: ArchiveEntry[] = [{
       sections: [],
     },
     en: {
-      title: "Urban coherence and design systems",
-      summary: "Thinking about a service's foundations through the order created by Santorini's materials and colors.",
-      tags: ["Design systems", "Foundation"],
+      title: "What Santorini can teach us about design systems",
+      summary: "Shared materials give Santorini its character. The same idea can shape a product’s design foundations.",
+      tags: ["Design systems", "Foundations"],
       introduction: [
-        "I remember Professor Yoo Hyun-joon using Santorini as an example while discussing architecture and cities. Its buildings vary in form, yet they share similar materials and textures along with a common palette of white and blue. The city becomes one coherent landscape, while each building keeps its character through a different shape.",
-        "Many contemporary cities, in contrast, are filled with buildings that share a similar block-like form while their exterior materials, textures, signs, and colors all differ. Individual character fades as every building adopts a similar shape, yet the city still lacks a shared impression. Repeating a form is not the same as creating a consistent experience.",
-        "This difference made me think that consistency in a service may work in a similar way. Rather than making every button, card, and screen share the same form, a design system can first define typography, color, icons, and radius as its common materials. When these foundations continue across screens, a dashboard and onboarding flow can have different structures while still feeling like one service, with each expressing the character its purpose requires.",
+        "A point Professor Yoo Hyun-joon made about Santorini has stayed with me. The buildings take many different shapes, but share materials, textures, and a white-and-blue palette. Together, they form a cohesive landscape that still leaves room for each building’s character.",
+        "In many modern cities, buildings follow a similar box-like shape, yet their cladding, textures, signs, and colors vary widely. The buildings lose some of their individuality without giving the city a shared identity. Repetition alone does little to make the whole feel cohesive.",
+        "I think product design can work the same way. Typography, color, icons, and corner radii give a design system its shared materials. Defining those foundations may matter more than making every button or card look alike. A dashboard and an onboarding flow serve different purposes and need different layouts. With the same foundations, both can feel at home in one product.",
       ],
       heroImage: {
         src: "/image/archives/santorini.jpg",
         alt: "A Santorini cityscape of white buildings and blue domes",
-        caption: "Different forms become one landscape through shared materials and colors.",
+        caption: "Shared materials and colors bring different forms together.",
       },
       sections: [],
     },

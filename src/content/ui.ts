@@ -12,14 +12,14 @@ export const ui = {
     photography: { title: "Photography", description: "일상에서 발견한 장면을 기록합니다.", empty: "아직 공개한 사진이 없습니다. 사진 데이터와 파일을 추가하면 이곳에 자동으로 표시됩니다." },
   },
   en: {
-    introduction: ["Hello :)", "I understand technology and design systems.", "I'm Kwansik Nam, a product designer."],
+    introduction: ["Hi, I’m Kwansik Nam.", "A product designer with a technical mindset", "and a focus on systems."],
     navigation: { projects: "Projects", photography: "Photography", archives: "Archive", about: "About", language: "KO" },
     languageLabel: "View in Korean",
     primaryNavigationLabel: "Primary navigation",
     footerNavigationLabel: "Footer navigation",
     skipToContent: "Skip to content",
-    notFound: { title: "Page not found", description: "The page may have moved or does not exist.", action: "Back to projects" },
-    photography: { title: "Photography", description: "A visual archive of moments I notice in everyday life.", empty: "No photographs have been published yet. Adding photo data and an image file will automatically populate this archive." },
+    notFound: { title: "Page not found", description: "This page may have moved, or the link may be incorrect.", action: "Back to projects" },
+    photography: { title: "Photography", description: "Everyday moments that caught my eye.", empty: "No photos to share just yet." },
   },
 } satisfies Record<Locale, {
   introduction: string[];
