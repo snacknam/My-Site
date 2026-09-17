@@ -12,7 +12,7 @@ export const ui = {
     photography: { title: "Photography", description: "일상에서 발견한 장면을 기록합니다.", empty: "아직 공개한 사진이 없습니다. 사진 데이터와 파일을 추가하면 이곳에 자동으로 표시됩니다." },
   },
   en: {
-    introduction: ["Hi, I’m Kwansik Nam.", "I design products and systems", "with a technical mindset."],
+    introduction: ["Hi, I’m Kwansik Nam.", "A product designer with a technical mindset", "and a focus on systems."],
     navigation: { projects: "Projects", photography: "Photography", archives: "Archive", about: "About", language: "KO" },
     languageLabel: "View in Korean",
     primaryNavigationLabel: "Primary navigation",

@@ -43,7 +43,7 @@ const developmentCollections = [
 
 export const archiveLabels = {
   ko: { title: "아카이브", description: "디자인에 대한 생각과 개발하며 배운 것들을 기록합니다.", back: "아카이브로 돌아가기", all: "전체", design: "디자인", development: "개발", topic: "개발 주제", allTopics: "모든 주제", source: "Velog 원문 보기", original: "한국어 원문", empty: "해당하는 글이 없습니다." },
-  en: { title: "Archive", description: "Design thoughts and coding lessons.", back: "Back to archive", all: "All", design: "Design", development: "Development", topic: "Development topic", allTopics: "All topics", source: "Read the original on Velog", original: "Original article in Korean", empty: "No articles in this category." },
+  en: { title: "Archive", description: "Thoughts on design and things I’ve learned through code.", back: "Back to archive", all: "All", design: "Design", development: "Development", topic: "Development topic", allTopics: "All topics", source: "Read the original on Velog", original: "Original article in Korean", empty: "No articles in this category." },
 };
 
 const designArchives: ArchiveEntry[] = [{
@@ -68,8 +68,8 @@ const designArchives: ArchiveEntry[] = [{
       sections: [],
     },
     en: {
-      title: "Design lessons from Santorini",
-      summary: "Santorini’s shared materials offer a model for product design foundations.",
+      title: "What Santorini can teach us about design systems",
+      summary: "Shared materials give Santorini its character. The same idea can shape a product’s design foundations.",
       tags: ["Design systems", "Foundations"],
       introduction: [
         "A point Professor Yoo Hyun-joon made about Santorini has stayed with me. The buildings take many different shapes, but share materials, textures, and a white-and-blue palette. Together, they form a cohesive landscape that still leaves room for each building’s character.",
@@ -79,7 +79,7 @@ const designArchives: ArchiveEntry[] = [{
       heroImage: {
         src: "/image/archives/santorini.jpg",
         alt: "A Santorini cityscape of white buildings and blue domes",
-        caption: "Shared materials and colors unite different forms.",
+        caption: "Shared materials and colors bring different forms together.",
       },
       sections: [],
     },
