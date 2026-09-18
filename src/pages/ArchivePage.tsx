@@ -36,7 +36,7 @@ export function ArchivePage({ locale, slug }: { locale: Locale; slug?: string })
             <p className="archive-summary">{copy.summary}</p>
             {entry.source && <p className="archive-source"><a href={entry.source} target="_blank" rel="noreferrer">{labels.source} ↗</a>{locale === "en" && <span>{labels.original}</span>}</p>}
           </header>
-          <div className="archive-body" lang={entry.category === "development" ? "ko" : locale}>
+          <div className="archive-body" lang={locale}>
             {copy.heroImage && <figure className="archive-figure"><img src={copy.heroImage.src} alt={copy.heroImage.alt} loading="lazy" decoding="async" />{copy.heroImage.caption && <figcaption>{copy.heroImage.caption}</figcaption>}</figure>}
             {copy.markdown && <Markdown remarkPlugins={[remarkGfm]} rehypePlugins={[rehypeRaw, rehypeSanitize]} components={{
               img: ({ src, alt }) => <img src={src} alt={alt ?? ""} loading="lazy" decoding="async" />,

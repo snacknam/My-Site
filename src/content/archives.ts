@@ -1,5 +1,6 @@
 import type { Locale } from "../types/content";
 import developmentPosts from "./development.json";
+import developmentEnglish from "./development.en.json";
 
 interface ArchiveCopy {
   title: string;
@@ -10,6 +11,8 @@ interface ArchiveCopy {
   sections: { title: string; paragraphs: string[] }[];
   markdown?: string;
 }
+
+const englishDevelopment: Record<string, Pick<ArchiveCopy, "title" | "summary" | "markdown">> = developmentEnglish;
 
 export interface ArchiveEntry {
   slug: string;
@@ -43,7 +46,7 @@ const developmentCollections = [
 
 export const archiveLabels = {
   ko: { title: "아카이브", description: "디자인에 대한 생각과 개발하며 배운 것들을 기록합니다.", back: "아카이브로 돌아가기", all: "전체", design: "디자인", development: "개발", topic: "개발 주제", allTopics: "모든 주제", source: "Velog 원문 보기", original: "한국어 원문", empty: "해당하는 글이 없습니다." },
-  en: { title: "Archive", description: "Thoughts on design and things I’ve learned through code.", back: "Back to archive", all: "All", design: "Design", development: "Development", topic: "Development topic", allTopics: "All topics", source: "Read the original on Velog", original: "Original article in Korean", empty: "No articles in this category." },
+  en: { title: "Archive", description: "Thoughts on design and things I’ve learned through code.", back: "Back to archive", all: "All", design: "Design", development: "Dev", topic: "Development topic", allTopics: "All topics", source: "Read the Korean original on Velog", original: "English translation", empty: "No articles in this category." },
 };
 
 const designArchives: ArchiveEntry[] = [{
@@ -68,18 +71,18 @@ const designArchives: ArchiveEntry[] = [{
       sections: [],
     },
     en: {
-      title: "What Santorini can teach us about design systems",
-      summary: "Shared materials give Santorini its character. The same idea can shape a product’s design foundations.",
+      title: "Santorini and design systems",
+      summary: "Santorini’s shared colors and materials offer a way to think about consistency in product design.",
       tags: ["Design systems", "Foundations"],
       introduction: [
-        "A point Professor Yoo Hyun-joon made about Santorini has stayed with me. The buildings take many different shapes, but share materials, textures, and a white-and-blue palette. Together, they form a cohesive landscape that still leaves room for each building’s character.",
-        "In many modern cities, buildings follow a similar box-like shape, yet their cladding, textures, signs, and colors vary widely. The buildings lose some of their individuality without giving the city a shared identity. Repetition alone does little to make the whole feel cohesive.",
-        "I think product design can work the same way. Typography, color, icons, and corner radii give a design system its shared materials. Defining those foundations may matter more than making every button or card look alike. A dashboard and an onboarding flow serve different purposes and need different layouts. With the same foundations, both can feel at home in one product.",
+        "I remember Professor Yoo Hyun-joon using Santorini to explain the relationship between architecture and a city. Its buildings vary in shape, but share similar materials, textures, and a palette of white and blue. Those common elements make the city feel like a coherent whole, while the different forms give each building its own character.",
+        "In many modern cities, the opposite happens. Buildings share a similar shape, yet their exterior materials, textures, signs, and colors differ. Individual buildings lose some of their character, without creating a strong identity for the city as a whole. Repeating the same shape does not necessarily create a consistent experience.",
+        "That contrast made me think about how consistency takes shape in a digital product. Before making every button or card look the same, it may be more useful to define shared foundations: typography, color, icons, and corner radii. When those foundations carry across screens, a dashboard and an onboarding flow can feel like parts of the same product, even with different purposes and layouts. Each screen can still have the character its purpose calls for.",
       ],
       heroImage: {
         src: "/image/archives/santorini.jpg",
         alt: "A Santorini cityscape of white buildings and blue domes",
-        caption: "Shared materials and colors bring different forms together.",
+        caption: "Shared materials and colors let different forms belong to one landscape.",
       },
       sections: [],
     },
@@ -109,5 +112,14 @@ export const archives: ArchiveEntry[] = [...designArchives, ...developmentPosts.
     sections: [],
     markdown: post.markdown,
   };
-  return { slug: post.slug, date: post.date, category: "development", topic, source: post.source, content: { ko: copy, en: copy } };
+  const translation = englishDevelopment[post.slug];
+  if (!translation?.title || !translation.summary || !translation.markdown) {
+    throw new Error(`Missing English archive translation: ${post.slug}`);
+  }
+  const englishCopy: ArchiveCopy = {
+    ...copy,
+    ...translation,
+    heroImage: collection ? { src: collection.image, alt: `${topic} archive cover` } : undefined,
+  };
+  return { slug: post.slug, date: post.date, category: "development", topic, source: post.source, content: { ko: copy, en: englishCopy } };
 })];
